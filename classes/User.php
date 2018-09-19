@@ -14,6 +14,7 @@ class User {
     else if (isset($_SESSION['uid'])) {
       $this->uid = $_SESSION['uid'];
     }
+
   }
 
   public function newUser($data) {
@@ -48,12 +49,14 @@ class User {
       $sql = 'SELECT UserId, Username, Password FROM User WHERE Username=?';
       $sth = $this->db->prepare($sql);
       $sth->execute(array($data['username']));
-      $res = $sth->fetch(PDO::FETCH_ASSOC);
-      if ($res['Username'] == $data['username']) {
-        if (password_verify($res['Password'], $data['password'])) {
+      $resSql = $sth->fetch(PDO::FETCH_ASSOC);
+      if ($resSql['Username'] == $data['username']) {
+        if (password_verify($data['password'], $resSql['Password'])) {
           $res['status'] = 'OK';
           $res['message'] = 'Logged in';
-          $this->uid = $res['UserId'];
+          $this->uid = $resSql['UserId'];
+          // NOTE THIS MUST BE CHANGED
+          $_SESSION['uid'] = $this->uid;
         }
         else {
           $res['status'] = 'ERROR';
@@ -70,6 +73,7 @@ class User {
       // NOTE NEVER GIVE CRUCIAL INFORMATION TO USERS
       echo 'Connection failed: ' . $e->getMessage();
     }
+    return $res;
   }
 
   public function isLoggedIn() {

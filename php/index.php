@@ -1,4 +1,6 @@
 <?php
+  session_start();
+
   require_once '../vendor/autoload.php';
   require_once '../classes/DB.php';
   require_once '../classes/User.php';
@@ -10,20 +12,17 @@
     //'cache' => './compilation_cache';
     // Can add cache after finished development for faster loading times
   ));
-
+  $data = [];
   $db = DB::getDBConnection();
   $user = new User($db);
   $category = new Category($db);
   $topic = new Topic($db);
 
   if ($user->isLoggedIn()) {
-    $data['loggedIn'] = true;
+    $data['loggedIn'] = "true";
   }
-  else {
-    $data['loggedIn'] = false;
-  }
-
 
   $data['categories'] = $category->getCategories();
   $data['topics'] = $topic->getTopics();
+
   echo $twig->render('index.html', $data);

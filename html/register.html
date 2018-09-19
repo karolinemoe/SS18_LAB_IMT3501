@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" media="screen" href="../css/index.css">
+
+    <title>Mainpage</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Forum name</h1>
+      </div>
+      <div class="article">
+        <div class="title">
+          <a href="index.php">Forum</a>
+        </div>
+        {% if loggedIn == "true" %}
+          <div class="logIn">
+            <a href="profile.php">Profile</a>
+          </div>
+          <div class="logOut">
+            <form class="logOutForm" method="POST" action="index.php">
+              <input type="hidden" name="logOutForm" value="1">
+              <input type="submit" value="Log out">
+            </form>
+          </div>
+        {% else %}
+          <div class="logIn">
+            <a href="logIn.php">Log in</a>
+          </div>
+          <div class="logOut">
+            <a href="register.php">Sign up</a>
+          </div>
+        {% endif %}
+        <div class="search">
+          <form class="searchbarForm" action="search.php" method="POST">
+            <input class="searchbarInput" name="searchbar" id="searchbar" type="text" placeholder="Search" required>
+            <input type="submit" value="Search">
+          </form>
+        </div>
+        <div class="content">
+          <form class="register" action="register.php" method ="POST">
+            <label for="username">Username</label>
+            <input name="username" id="username" type="text" placeholder="User" required>
+            <label for="password">Password</label>
+            <input name="password" id="password" type="password" placeholder="Password" required>
+            <label for="email">Email</label>
+            <input name="email" id="email" type="email" placeholder="example.user@mail.com" required>
+            <input name="register" id="register" type="submit" value="Register">
+          </form>
+          <a href="logIn.php">Already have a user? Sign in here</a>
+          <div class="error">
+            {% if status %}
+              <h3>{{ message }}</h3>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="navLeft">
+        <h2>Padding left</h2>
+      </div>
+      <div class="navRight">
+        <h2>Padding right</h2>
+      </div>
+    </div>
+  </body>
+</html>

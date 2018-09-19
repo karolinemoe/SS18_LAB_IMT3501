@@ -42,7 +42,19 @@
           </form>
         </div>
         <div class="content">
-          <h1>Hello World!</h1>
+          <form class="register" action="logIn.php" method ="POST">
+            <label for="username">Username</label>
+            <input name="username" id="username" type="text" placeholder="User" required>
+            <label for="password">Password</label>
+            <input name="password" id="password" type="password" placeholder="Password" required>
+            <input name="register" id="register" type="submit" value="Register">
+          </form>
+          <a href="register.php">Don't have a user? Sign up here</a>
+          <div class="error">
+            {% if status %}
+              <h3>{{ message }}</h3>
+            {% endif %}
+          </div>
         </div>
       </div>
       <div class="navLeft">

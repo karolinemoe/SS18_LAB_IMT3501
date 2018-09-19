@@ -19,14 +19,18 @@
     header('Location: index.php');
   }
   else if (!isset($_POST['username'])){
-    echo $twig->render('register.html', array());
+    echo $twig->render('logIn.html', array());
   }
   else {
     $data['username'] = $_POST['username'];
     $data['password'] = $_POST['password'];
-    $data['email'] = $_POST['email'];
 
-    $res = $user->newUser($data);
-    if ($res['status'] == 'OK') header('Location: index.php');
-    else echo $twig->render('register.html', array($res));
+    $res = $user->logIn($data);
+    echo $res['message'];
+    if ($res['status'] == 'OK') {
+      header('Location: index.php');
+    }
+    else {
+      echo $twig->render('logIn.html', $res);
+    }
   }
