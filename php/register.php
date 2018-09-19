@@ -1,4 +1,6 @@
 <?php
+  session_start();
+
   require_once '../vendor/autoload.php';
   require_once '../classes/DB.php';
   require_once '../classes/User.php';
@@ -26,5 +28,5 @@
 
     $res = $user->newUser($data);
     if ($res['status'] == 'OK') header('Location: index.php');
-    else echo$twig->render('register.html', array($res));
+    else echo $twig->render('register.html', array($res));
   }

@@ -17,7 +17,7 @@
         <div class="title">
           <a href="index.php">Forum</a>
         </div>
-        {% if loggedIn == true %}
+        {% if loggedIn == "true" %}
           <div class="logIn">
             <a href="profile.php">Profile</a>
           </div>
@@ -52,6 +52,11 @@
             <input name="register" id="register" type="submit" value="Register">
           </form>
           <a href="logIn.php">Already have a user? Sign in here</a>
+          <div class="error">
+            {% if status %}
+              <h3>{{ message }}</h3>
+            {% endif %}
+          </div>
         </div>
       </div>
       <div class="navLeft">
