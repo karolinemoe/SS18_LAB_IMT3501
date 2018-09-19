@@ -43,6 +43,18 @@
         </div>
         <div class="content">
           <h1>Hello World!</h1>
+          {% if categories %}
+            {% for category in categories %}
+              <button id="{{ category.CategoryId }}" onclick="ShowTopics(id)">{{ category.CategoryName }}</button>
+              {% if topics %}
+                {% for topic in topics %}
+                  {% if ("{{ topic.CategoryId }}" == "{{ category.CategoryId }}") %}
+                    <div class="Topics">{{ topic.TopicName }}</div>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
         </div>
       </div>
       <div class="navLeft">
@@ -52,5 +64,28 @@
         <h2>Padding right</h2>
       </div>
     </div>
+
+    <script>
+      var Topics = document.getElementsByClassName("Topics"), i;
+      //Topics.style. = "none";
+
+      for (var i = 0; i < Topics.length; i ++) {
+        Topics[i].style.visibility = 'hidden';
+      }
+
+
+      function ShowTopics(id) {
+        for (i = 0; i <= Topics.length; i++) {
+          if(Topics[i].CategoryId == id) {
+            if (Topics[i].style.visibility == 'hidden') {
+              Topics[i].style.visibility = 'visible';
+            } else {
+              Topics[i].style.visibility = 'hidden';
+            }
+          }
+        }
+      }
+    </script>
+
   </body>
 </html>
