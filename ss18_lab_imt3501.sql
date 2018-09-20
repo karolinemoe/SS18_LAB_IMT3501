@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `category` (
-  `CategoryId` int(11) NOT NULL,
-  `CategoryName` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+  `categoryId` int(11) NOT NULL,
+  `categoryName` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -40,8 +40,8 @@ CREATE TABLE `category` (
 --
 
 CREATE TABLE `failedlogins` (
-  `UserId` int(11) NOT NULL,
-  `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `userId` int(11) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -51,9 +51,9 @@ CREATE TABLE `failedlogins` (
 --
 
 CREATE TABLE `oldpwhash` (
-  `UserId` int(11) NOT NULL,
-  `Salt` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `PWHash` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `userId` int(11) NOT NULL,
+  `salt` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `pWHash` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -63,12 +63,12 @@ CREATE TABLE `oldpwhash` (
 --
 
 CREATE TABLE `replies` (
-  `ReplyId` int(11) NOT NULL,
-  `Content` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `UserId` int(11) NOT NULL,
-  `ThreadId` int(11) NOT NULL,
-  `SubReplyOf` int(11) DEFAULT NULL
+  `replyId` int(11) NOT NULL,
+  `content` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `userId` int(11) NOT NULL,
+  `threadId` int(11) NOT NULL,
+  `subReplyOf` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -78,12 +78,12 @@ CREATE TABLE `replies` (
 --
 
 CREATE TABLE `topics` (
-  `TopicId` int(11) NOT NULL,
-  `TopicName` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `Description` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `CategoryId` int(11) NOT NULL,
-  `UserId` int(11) NOT NULL
+  `topicId` int(11) NOT NULL,
+  `topicName` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `categoryId` int(11) NOT NULL,
+  `userId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -93,11 +93,11 @@ CREATE TABLE `topics` (
 --
 
 CREATE TABLE `user` (
-  `UserId` int(11) NOT NULL,
-  `Username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `Password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `Email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `Usertype` varchar(20) COLLATE utf8_unicode_ci NOT NULL
+  `userId` int(11) NOT NULL,
+  `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `usertype` varchar(20) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -108,41 +108,41 @@ CREATE TABLE `user` (
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
-  ADD PRIMARY KEY (`CategoryId`);
+  ADD PRIMARY KEY (`categoryId`);
 
 --
 -- Indexes for table `failedlogins`
 --
 ALTER TABLE `failedlogins`
-  ADD PRIMARY KEY (`UserId`,`Timestamp`);
+  ADD PRIMARY KEY (`userId`,`timestamp`);
 
 --
 -- Indexes for table `oldpwhash`
 --
 ALTER TABLE `oldpwhash`
-  ADD PRIMARY KEY (`UserId`,`Salt`);
+  ADD PRIMARY KEY (`userId`,`salt`);
 
 --
 -- Indexes for table `replies`
 --
 ALTER TABLE `replies`
-  ADD PRIMARY KEY (`ReplyId`),
-  ADD KEY `ThreadId` (`ThreadId`),
-  ADD KEY `UserId` (`UserId`);
+  ADD PRIMARY KEY (`replyId`),
+  ADD KEY `threadId` (`threadId`),
+  ADD KEY `userId` (`userId`);
 
 --
 -- Indexes for table `topics`
 --
 ALTER TABLE `topics`
-  ADD PRIMARY KEY (`TopicId`),
-  ADD KEY `CategoryId` (`CategoryId`),
-  ADD KEY `UserId` (`UserId`);
+  ADD PRIMARY KEY (`topicId`),
+  ADD KEY `categoryId` (`categoryId`),
+  ADD KEY `userId` (`userId`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`UserId`);
+  ADD PRIMARY KEY (`userId`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -152,22 +152,22 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `CategoryId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `categoryId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `replies`
 --
 ALTER TABLE `replies`
-  MODIFY `ReplyId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `replyId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `topics`
 --
 ALTER TABLE `topics`
-  MODIFY `TopicId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `topicId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `UserId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Begrensninger for dumpede tabeller
 --
@@ -176,21 +176,21 @@ ALTER TABLE `user`
 -- Begrensninger for tabell `failedlogins`
 --
 ALTER TABLE `failedlogins`
-  ADD CONSTRAINT `failedlogins_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `user` (`UserId`);
+  ADD CONSTRAINT `failedlogins_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`);
 
 --
 -- Begrensninger for tabell `replies`
 --
 ALTER TABLE `replies`
-  ADD CONSTRAINT `replies_ibfk_1` FOREIGN KEY (`ThreadId`) REFERENCES `topics` (`TopicId`),
-  ADD CONSTRAINT `replies_ibfk_2` FOREIGN KEY (`UserId`) REFERENCES `user` (`UserId`);
+  ADD CONSTRAINT `replies_ibfk_1` FOREIGN KEY (`threadId`) REFERENCES `topics` (`topicId`),
+  ADD CONSTRAINT `replies_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`);
 
 --
 -- Begrensninger for tabell `topics`
 --
 ALTER TABLE `topics`
-  ADD CONSTRAINT `topics_ibfk_1` FOREIGN KEY (`CategoryId`) REFERENCES `category` (`CategoryId`),
-  ADD CONSTRAINT `topics_ibfk_2` FOREIGN KEY (`UserId`) REFERENCES `user` (`UserId`);
+  ADD CONSTRAINT `topics_ibfk_1` FOREIGN KEY (`categoryId`) REFERENCES `category` (`categoryId`),
+  ADD CONSTRAINT `topics_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
