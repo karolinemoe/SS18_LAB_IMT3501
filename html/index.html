@@ -45,11 +45,14 @@
           <h1>Categories</h1>
           {% if categories %}
             {% for category in categories %}
-              <button id="{{ category.CategoryId }}" onclick="ShowTopics(id)">{{ category.CategoryName }}</button>
+              <button id="{{ category.categoryId }}" onclick="ShowTopics(id)">
+                {{ category.categoryName }}
+              </button><br>
               {% if topics %}
                 {% for topic in topics %}
-                  {% if ("{{ topic.CategoryId }}" == "{{ category.CategoryId }}") %}
-                    <div class="Topics">{{ topic.TopicName }}</div>
+                  {% if ("{{ topic.categoryId }}" == "{{ category.categoryId }}") %}
+                  er det topics?<br>
+                    <div class="Topics">{{ topic.topicName }}</div>
                   {% endif %}
                 {% endfor %}
               {% endif %}
