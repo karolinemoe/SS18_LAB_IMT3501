@@ -48,6 +48,7 @@
               <button id="{{ category.CategoryId }}" onclick="ShowTopics(id)">{{ category.CategoryName }}</button>
               {% if topics %}
                 {% for topic in topics %}
+                
                   {% if ("{{ topic.CategoryId }}" == "{{ category.CategoryId }}") %}
                     <div class="Topics">{{ topic.TopicName }}</div>
                   {% endif %}
