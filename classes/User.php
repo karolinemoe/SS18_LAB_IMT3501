@@ -19,7 +19,7 @@ class User {
 
   public function newUser($data) {
     try {
-      $sql = 'INSERT INTO user(Username, Password, Email, Usertype) VALUES (?, ?, ?, ?)';
+      $sql = 'INSERT INTO user(username, password, email, usertype) VALUES (?, ?, ?, ?)';
       $sth = $this->db->prepare($sql);
       $usertype = "normal";
       $password = password_hash($data['password'], PASSWORD_DEFAULT);
@@ -46,15 +46,15 @@ class User {
   public function logIn($data) {
     $res = [];
     try {
-      $sql = 'SELECT UserId, Username, Password FROM user WHERE Username=?';
+      $sql = 'SELECT userId, username, password FROM user WHERE username=?';
       $sth = $this->db->prepare($sql);
       $sth->execute(array($data['username']));
       $resSql = $sth->fetch(PDO::FETCH_ASSOC);
-      if ($resSql['Username'] == $data['username']) {
-        if (password_verify($data['password'], $resSql['Password'])) {
+      if ($resSql['username'] == $data['username']) {
+        if (password_verify($data['password'], $resSql['password'])) {
           $res['status'] = 'OK';
           $res['message'] = 'Logged in';
-          $this->uid = $resSql['UserId'];
+          $this->uid = $resSql['userId'];
           // NOTE THIS MUST BE CHANGED
           $_SESSION['uid'] = $this->uid;
         }
