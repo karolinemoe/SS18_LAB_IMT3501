@@ -50,9 +50,8 @@
               </button><br>
               {% if topics %}
                 {% for topic in topics %}
-                  {% if ("{{ topic.categoryId }}" == "{{ category.categoryId }}") %}
-                  er det topics?<br>
-                    <div class="Topics">{{ topic.topicName }}</div>
+                  {% if ("{{ topic.CategoryId }}" == "{{ category.CategoryId }}") %}
+                    <div class="Topics">{{ topic.TopicName }}</div>
                   {% endif %}
                 {% endfor %}
               {% endif %}

@@ -46,7 +46,7 @@ class User {
   public function logIn($data) {
     $res = [];
     try {
-      $sql = 'SELECT UserId, Username, Password FROM User WHERE Username=?';
+      $sql = 'SELECT UserId, Username, Password FROM user WHERE Username=?';
       $sth = $this->db->prepare($sql);
       $sth->execute(array($data['username']));
       $resSql = $sth->fetch(PDO::FETCH_ASSOC);

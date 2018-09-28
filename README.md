@@ -22,3 +22,10 @@ In the first assigment you have to specify functional and  security requirements
 In this assignment you have to continue the development process of your forum applicaiton. After you finish with the requirements and high level design, you start with the detailed design of each module of the application that fulfills your requirements. Then you implement the application.  
 
 Divide the team into smaller groups (1-2), each of is responisible for one module of the application.  This assignment has two submissions, a running application and an installation guide. 
+
+### Installation
+Clone project to your htdocs folder in XAMPP
+Navigate to your folder and run 'composer require "twig/twig:^2.0"
+
+Twig documentation:
+https://twig.symfony.com/ 
