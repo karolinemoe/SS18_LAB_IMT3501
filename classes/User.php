@@ -55,6 +55,8 @@ class User {
           $res['status'] = 'OK';
           $res['message'] = 'Logged in';
           $this->uid = $resSql['userId'];
+          // Avoid Session Fixation by changing session id on login
+          session_regenerate_id(); 
           // NOTE THIS MUST BE CHANGED
           $_SESSION['uid'] = $this->uid;
         }
