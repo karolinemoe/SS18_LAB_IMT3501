@@ -27,6 +27,7 @@
     $data['email'] = $_POST['email'];
 
     $res = $user->newUser($data);
+    // Email validation
     if ($res['status'] == 'OK' && filter_var($data['email'], FILTER_VALIDATE_EMAIL)  ) header('Location: index.php');
     else echo $twig->render('register.html', array($res));
   }
