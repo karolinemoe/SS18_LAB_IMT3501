@@ -4,7 +4,11 @@
 }
 
 body {
+}
 
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .container {
@@ -16,10 +20,10 @@ body {
 .article {
   grid-column: 2/3;
   grid-row: 2/3;
-  background-color: red;
+  background-color: #1d30c1;
   display: grid;
   grid-template-columns: 20% 20% 20% 40%;
-  grid-template-rows: 100px auto;
+  grid-template-rows: 80px auto;
 }
 
 .navLeft {
@@ -40,28 +44,48 @@ body {
   background-color: #3399CC;
 }
 
-.title {
-  grid-column: 1/2;
-  grid-row: 1/2;
+.btnGeneral {
   background-color: #67B8DE;
+  height: 70px;
+  border: thin solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.logIn {
+a:hover {
+  background-color: #569DBF;
+}
+
+#btnForum {
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+#btnLogin {
   grid-column: 2/3;
   grid-row: 1/2;
   background-color: #67B8DE;
 }
 
-.logOut {
+#btnLogout {
   grid-column: 3/4;
   grid-row: 1/2;
   background-color: #67B8DE;
 }
 
-.search {
+#logInField {
   grid-column: 4/5;
   grid-row: 1/2;
   background-color: #67B8DE;
+}
+
+#logoutButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: 70px;
+  width: 215px;
 }
 
 .content {

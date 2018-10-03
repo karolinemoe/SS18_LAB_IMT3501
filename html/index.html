@@ -14,32 +14,36 @@
         <h1>Forum name</h1>
       </div>
       <div class="article">
-        <div class="title">
-          <a href="index.php">Forum</a>
-        </div>
-        {% if loggedIn == "true" %}
-          <div class="logIn">
-            <a href="profile.php">Profile</a>
+        <a href="index.php">
+          <div class="btnGeneral" id="btnForum">
+            <h2 class="btnTxt">Forum</h2>
           </div>
-          <div class="logOut">
+        </a>
+        {% if loggedIn == "true" %}
+          <a href="profile.php">
+            <div class="btnGeneral">
+              <h2 class="btnTxt">Profile</h2>
+            </div>
+          </a>
+          <div class="btnGeneral">
             <form class="logOutForm" method="POST" action="index.php">
               <input type="hidden" name="logOutForm" value="1">
-              <input type="submit" value="Log out">
+              <input type="submit" value="Log out" id="logoutButton">
             </form>
           </div>
         {% else %}
-          <div class="logIn">
-            <a href="logIn.php">Log in</a>
-          </div>
-          <div class="logOut">
-            <a href="register.php">Sign up</a>
-          </div>
+          <a href="logIn.php">
+            <div class="btnGeneral" id="btnLogin">
+              <h2 class="btnTxt">Log in</h2>
+            </div>
+          </a>
+          <a href="register.php">
+            <div class="btnGeneral" id="btnLogout">
+              <h2 class="btnTxt">Sign up</h2>
+            </div>
+          </a>
         {% endif %}
-        <div class="search">
-          <form class="searchbarForm" action="search.php" method="POST">
-            <input class="searchbarInput" name="searchbar" id="searchbar" type="text" placeholder="Search" required>
-            <input type="submit" value="Search">
-          </form>
+        <div class="btnGeneral" id="logInField">
         </div>
         <div class="content">
           <h1>Categories</h1>
