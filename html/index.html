@@ -50,8 +50,8 @@
               </button><br>
               {% if topics %}
                 {% for topic in topics %}
-                  {% if ("{{ topic.CategoryId }}" == "{{ category.CategoryId }}") %}
-                    <div class="Topics">{{ topic.TopicName }}</div>
+                  {% if topic.categoryId == category.categoryId %}
+                    <div class="Topics" >{{ topic.topicName }}</div>
                   {% endif %}
                 {% endfor %}
               {% endif %}
@@ -76,12 +76,11 @@
 
       function ShowTopics(id) {
         for (i = 0; i <= Topics.length; i++) {
-          if(Topics[i].CategoryId == id) {
             if (Topics[i].style.visibility == 'hidden') {
               Topics[i].style.visibility = 'visible';
             } else {
               Topics[i].style.visibility = 'hidden';
-            }
+
           }
         }
       }
