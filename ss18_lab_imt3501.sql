@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 18. Sep, 2018 17:34 PM
--- Server-versjon: 10.1.25-MariaDB
--- PHP Version: 7.1.7
+-- Generation Time: 03. Okt, 2018 14:53 PM
+-- Server-versjon: 10.1.26-MariaDB
+-- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,6 +32,15 @@ CREATE TABLE `category` (
   `categoryId` int(11) NOT NULL,
   `categoryName` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dataark for tabell `category`
+--
+
+INSERT INTO `category` (`categoryId`, `categoryName`) VALUES
+(1, 'Category 1'),
+(2, 'Category 2'),
+(3, 'Category 3');
 
 -- --------------------------------------------------------
 
@@ -67,9 +76,18 @@ CREATE TABLE `replies` (
   `content` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `userId` int(11) NOT NULL,
-  `threadId` int(11) NOT NULL,
+  `topicId` int(11) NOT NULL,
   `subReplyOf` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dataark for tabell `replies`
+--
+
+INSERT INTO `replies` (`replyId`, `content`, `timestamp`, `userId`, `topicId`, `subReplyOf`) VALUES
+(1, 'Content of reply 1', '2018-10-03 12:49:00', 1, 1, NULL),
+(2, 'Content of reply 2', '2018-10-03 12:50:00', 2, 2, NULL),
+(3, 'Content of reply 3', '2018-10-03 12:51:00', 3, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -86,6 +104,15 @@ CREATE TABLE `topics` (
   `userId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dataark for tabell `topics`
+--
+
+INSERT INTO `topics` (`topicId`, `topicName`, `description`, `timestamp`, `categoryId`, `userId`) VALUES
+(1, 'Topic 1', 'Description for topic 1', '2018-10-03 12:44:00', 1, 1),
+(2, 'Topic 2', 'Description for topic 2', '2018-10-03 12:45:00', 2, 2),
+(3, 'Topic 3', 'Description for topic 3', '2018-10-03 12:46:00', 3, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -99,6 +126,15 @@ CREATE TABLE `user` (
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `usertype` varchar(20) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dataark for tabell `user`
+--
+
+INSERT INTO `user` (`userId`, `username`, `password`, `email`, `usertype`) VALUES
+(1, 'user1', '$2y$10$kuR9OIhby1br/D18DGQZne7IE6hV/ajNTZ4Lxp7QeICbW1Ny4gS22', 'user1@mail.com', 'normal'),
+(2, 'user2', '$2y$10$4ub5mFib/sY85MICjxMgv.GXITpVsAapntD2I.9ybKDvO8C.UbQaa', 'user2@mail.com', 'normal'),
+(3, 'user3', '$2y$10$6rktN596UvPhVXDF3ICnPOTQ9/I/ctC1b6vB8kt2GWyggi43n7jG6', 'user3@mail.com', 'normal');
 
 --
 -- Indexes for dumped tables
@@ -127,7 +163,7 @@ ALTER TABLE `oldpwhash`
 --
 ALTER TABLE `replies`
   ADD PRIMARY KEY (`replyId`),
-  ADD KEY `threadId` (`threadId`),
+  ADD KEY `threadId` (`topicId`),
   ADD KEY `userId` (`userId`);
 
 --
@@ -152,22 +188,26 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `categoryId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `categoryId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `replies`
 --
 ALTER TABLE `replies`
-  MODIFY `replyId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `replyId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `topics`
 --
 ALTER TABLE `topics`
-  MODIFY `topicId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `topicId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- Begrensninger for dumpede tabeller
 --
@@ -182,7 +222,7 @@ ALTER TABLE `failedlogins`
 -- Begrensninger for tabell `replies`
 --
 ALTER TABLE `replies`
-  ADD CONSTRAINT `replies_ibfk_1` FOREIGN KEY (`threadId`) REFERENCES `topics` (`topicId`),
+  ADD CONSTRAINT `replies_ibfk_1` FOREIGN KEY (`topicId`) REFERENCES `topics` (`topicId`),
   ADD CONSTRAINT `replies_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`);
 
 --
