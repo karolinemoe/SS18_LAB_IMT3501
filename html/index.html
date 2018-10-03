@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" media="screen" href="../css/index.css">
 
-    <title>Mainpage</title>
+    <title>SimpleForum</title>
   </head>
   <body>
     <div class="container">
       <div class="header">
-        <h1>Forum name</h1>
+        <h1>SimpleForum</h1>
       </div>
       <div class="article">
         <a href="index.php">
@@ -54,8 +54,8 @@
               </button><br>
               {% if topics %}
                 {% for topic in topics %}
-                  {% if ("{{ topic.CategoryId }}" == "{{ category.CategoryId }}") %}
-                    <div class="Topics">{{ topic.TopicName }}</div>
+                  {% if topic.categoryId == category.categoryId %}
+                    <div class="Topics" >{{ topic.topicName }}</div>
                   {% endif %}
                 {% endfor %}
               {% endif %}
@@ -64,10 +64,8 @@
         </div>
       </div>
       <div class="navLeft">
-        <h2>Padding left</h2>
       </div>
       <div class="navRight">
-        <h2>Padding right</h2>
       </div>
     </div>
 
@@ -82,12 +80,11 @@
 
       function ShowTopics(id) {
         for (i = 0; i <= Topics.length; i++) {
-          if(Topics[i].CategoryId == id) {
             if (Topics[i].style.visibility == 'hidden') {
               Topics[i].style.visibility = 'visible';
             } else {
               Topics[i].style.visibility = 'hidden';
-            }
+
           }
         }
       }

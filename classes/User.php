@@ -10,6 +10,8 @@ class User {
     $this->db = $db;
     if (isset($_POST['logOutForm'])) {
       unset($_SESSION['uid']);
+      // Avoid Session Fixation by changing session id on logout
+      session_regenerate_id(); 
     }
     else if (isset($_SESSION['uid'])) {
       $this->uid = $_SESSION['uid'];
