@@ -29,3 +29,9 @@ Navigate to your folder and run 'composer require "twig/twig:^2.0"
 
 Twig documentation:
 https://twig.symfony.com/ 
+
+### Installation (not complete)
+Pull the repo
+install docker and docker-composer
+docker-composer up
+
