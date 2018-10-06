@@ -58,12 +58,14 @@
           </div>
         {% endif %}
         <div class="content">
-          <h1>Categories</h1>
+          <div id= title><h1>Categories</h1></div>
+          <div id=ac>
           <div id="accordion">
           {% if categories %}
             {% for category in categories %}
                 <h3>{{ category.categoryName }}</h3>
                 {% if topics %}<div>
+                <h4>Topics:</h4><br>
                   {% for topic in topics %}
                     {% if topic.categoryId == category.categoryId %}
                       
@@ -76,6 +78,7 @@
           {% endif %}
           </div>
         </div>
+      </div>
       </div>
       <div class="navLeft">
       </div>
