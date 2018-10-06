@@ -31,19 +31,25 @@
               <input type="submit" value="Log out" id="logoutButton">
             </form>
           </div>
+          <div class="btnGeneral" id="logInField">
+
+          </div>
         {% else %}
-          <a href="logIn.php">
-            <div class="btnGeneral" id="btnLogin">
-              <h2 class="btnTxt">Log in</h2>
-            </div>
-          </a>
+          <div class="btnGeneral" id="btnLogin">
+
+          </div>
           <a href="register.php">
             <div class="btnGeneral" id="btnLogout">
               <h2 class="btnTxt">Sign up</h2>
             </div>
           </a>
           <div class="btnGeneral" id="logInField">
-            <a href="logIn.php">Log in</a>
+            <form id="loginForm" method="POST" action="logIn.php">
+              <input type="hidden" name="loginForm" value="0">
+              <input type="text" name="username" placeholder="Username" required>
+              <input type="password" name="password" placeholder="Password" required>
+              <input type="submit" value="Log in">
+            </form>
           </div>
         {% endif %}
         <div class="content">

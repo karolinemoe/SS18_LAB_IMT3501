@@ -14,9 +14,11 @@
         <h1>Forum name</h1>
       </div>
       <div class="article">
-        <div class="title">
-          <a href="index.php">Forum</a>
-        </div>
+        <a href="index.php">
+          <div class="btnGeneral" id="btnForum">
+            <h2 class="btnTxt">Forum</h2>
+          </div>
+        </a>
         {% if loggedIn == "true" %}
           <div class="logIn">
             <a href="profile.php">Profile</a>
@@ -28,30 +30,35 @@
             </form>
           </div>
         {% else %}
-          <div class="logIn">
-            <a href="logIn.php">Log in</a>
+        <div class="btnGeneral" id="btnLogin">
+
+        </div>
+        <a href="register.php">
+          <div class="btnGeneral" id="btnLogout">
+            <h2 class="btnTxt">Sign up</h2>
           </div>
-          <div class="logOut">
-            <a href="register.php">Sign up</a>
-          </div>
-        {% endif %}
-        <div class="search">
-          <form class="searchbarForm" action="search.php" method="POST">
-            <input class="searchbarInput" name="searchbar" id="searchbar" type="text" placeholder="Search" required>
-            <input type="submit" value="Search">
+        </a>
+        <div class="btnGeneral" id="logInField">
+          <form id="loginForm" method="POST" action="logIn.php">
+            <input type="hidden" name="loginForm" value="0">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="submit" value="Log in">
           </form>
         </div>
+        {% endif %}
         <div class="content">
-          <form class="register" action="register.php" method ="POST">
-            <label for="username">Username</label>
-            <input name="username" id="username" type="text" placeholder="User" required>
-            <label for="password">Password</label>
-            <input name="password" id="password" type="password" placeholder="Password" required>
-            <label for="email">Email</label>
-            <input name="email" id="email" type="email" placeholder="example.user@mail.com" required>
-            <input name="register" id="register" type="submit" value="Register">
+          <form id="registerForm" action="register.php" method ="POST">
+            <label for="username" class="registerContent" id="usernameTxt">Username</label>
+            <input name="username" class="registerContent" id="usernameInp" type="text" placeholder="Username" required>
+            <label for="password" class="registerContent" id="passwordTxt">Password</label>
+            <input name="password" class="registerContent" id="passwordInp" type="password" placeholder="Password" required>
+            <label for="email" class="registerContent" id="emailTxt">Email</label>
+            <input name="email" class="registerContent" id="emailInp" type="email" placeholder="example.user@mail.com" required>
+            <input name="register" class="registerContent" id="registerBtn" type="submit" value="Register">
+            <a href="logIn.php" id="alreadyRegistered">Already have a user? Sign in here</a>
           </form>
-          <a href="logIn.php">Already have a user? Sign in here</a>
+
           <div class="error">
             {% if status %}
               <h3>{{ message }}</h3>
