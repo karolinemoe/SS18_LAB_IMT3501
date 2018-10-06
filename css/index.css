@@ -21,7 +21,7 @@ a {
 .article {
   grid-column: 2/3;
   grid-row: 2/3;
-  background-color: #1d30c1;
+  background-color: #119310;
   display: grid;
   grid-template-columns: 20% 20% 20% 40%;
   grid-template-rows: 80px auto;
@@ -46,7 +46,7 @@ a {
 }
 
 .btnGeneral {
-  background-color: #67B8DE;
+  background-color: #15bf13;
   height: 70px;
   border: thin solid black;
   display: flex;
@@ -55,7 +55,7 @@ a {
 }
 
 a:hover {
-  background-color: #569DBF;
+  background-color: #1cd11b;
 }
 
 #btnForum {
@@ -66,19 +66,16 @@ a:hover {
 #btnLogin {
   grid-column: 2/3;
   grid-row: 1/2;
-  background-color: #67B8DE;
 }
 
 #btnLogout {
   grid-column: 3/4;
   grid-row: 1/2;
-  background-color: #67B8DE;
 }
 
 #logInField {
   grid-column: 4/5;
   grid-row: 1/2;
-  background-color: #67B8DE;
 }
 
 #logoutButton {
@@ -137,7 +134,7 @@ a:hover {
 .content {
   grid-column: 1/5;
   grid-row: 2/3;
-  background-color: #91C9E8;
+  background-color: #af734b;
 }
 
 #title {
