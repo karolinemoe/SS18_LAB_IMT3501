@@ -3,7 +3,7 @@
 ## Members  
 Karoline Moe Arnesen (473190) - PROG  
 Kjetil Wilhelmsen Helgås (473187) - PROG  
-Jørgen Jærnes (94133307) - PROG  
+Jørgen Jærnes (473179) - PROG  
 Anders Gustad (699643) - BITSEC  
 Daniel C. H. Magnus(473141) - BITSEC  
 Adrian J. Moen (473156) - BITSEC  
