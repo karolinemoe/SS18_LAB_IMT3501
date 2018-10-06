@@ -26,7 +26,6 @@
     $data['password'] = $_POST['password'];
 
     $res = $user->logIn($data);
-    echo $res['message'];
     if ($res['status'] == 'OK') {
       header('Location: index.php');
     }
