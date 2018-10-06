@@ -57,15 +57,15 @@
           {% if categories %}
             {% for category in categories %}
                 <h3>{{ category.categoryName }}</h3>
-                {% if topics %}
+                {% if topics %}<div>
                   {% for topic in topics %}
                     {% if topic.categoryId == category.categoryId %}
                       
-                      <div><p>{{ topic.topicName }}</p></div>
+                      <p>{{ topic.topicName }}</p>
                       
                   {% endif %}
                 {% endfor %}
-              {% endif %}
+              {% endif %}</div>
             {% endfor %}
           {% endif %}
           </div>
