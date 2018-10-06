@@ -67,7 +67,7 @@
                   {% for topic in topics %}
                     {% if topic.categoryId == category.categoryId %}
                       
-                      <p>{{ topic.topicName }}</p>
+                      <p><a href="topic.php?id={{ topic.topicId }}">{{ topic.topicName }}</a></p>
                       
                   {% endif %}
                 {% endfor %}
