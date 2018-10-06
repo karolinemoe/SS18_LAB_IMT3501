@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" media="screen" href="../css/index.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
     <title>SimpleForum</title>
   </head>
@@ -31,37 +36,45 @@
               <input type="submit" value="Log out" id="logoutButton">
             </form>
           </div>
+          <div class="btnGeneral" id="logInField">
+
+          </div>
         {% else %}
-          <a href="logIn.php">
-            <div class="btnGeneral" id="btnLogin">
-              <h2 class="btnTxt">Log in</h2>
-            </div>
-          </a>
+          <div class="btnGeneral" id="btnLogin">
+
+          </div>
           <a href="register.php">
             <div class="btnGeneral" id="btnLogout">
               <h2 class="btnTxt">Sign up</h2>
             </div>
           </a>
           <div class="btnGeneral" id="logInField">
-            <a href="logIn.php">Log in</a>
+            <form id="loginForm" method="POST" action="logIn.php">
+              <input type="hidden" name="loginForm" value="0">
+              <input type="text" name="username" placeholder="Username" required>
+              <input type="password" name="password" placeholder="Password" required>
+              <input type="submit" value="Log in">
+            </form>
           </div>
         {% endif %}
         <div class="content">
           <h1>Categories</h1>
+          <div id="accordion">
           {% if categories %}
             {% for category in categories %}
-              <button id="{{ category.categoryId }}" onclick="ShowTopics(id)">
-                {{ category.categoryName }}
-              </button><br>
-              {% if topics %}
-                {% for topic in topics %}
-                  {% if topic.categoryId == category.categoryId %}
-                    <div class="Topics" >{{ topic.topicName }}</div>
+                <h3>{{ category.categoryName }}</h3>
+                {% if topics %}<div>
+                  {% for topic in topics %}
+                    {% if topic.categoryId == category.categoryId %}
+                      
+                      <p><a href="topic.php?id={{ topic.topicId }}">{{ topic.topicName }}</a></p>
+                      
                   {% endif %}
                 {% endfor %}
-              {% endif %}
+              {% endif %}</div>
             {% endfor %}
           {% endif %}
+          </div>
         </div>
       </div>
       <div class="navLeft">
@@ -71,10 +84,20 @@
     </div>
 
     <script>
+      
+      $( function() {
+        $( "#accordion" ).accordion({
+          collapsible: true
+        });
+        $( ".selector" ).accordion({
+          active: false
+        });
+      } );
+
       var Topics = document.getElementsByClassName("Topics"), i;
       //Topics.style. = "none";
 
-      for (var i = 0; i < Topics.length; i ++) {
+      /*for (var i = 0; i < Topics.length; i ++) {
         Topics[i].style.visibility = 'hidden';
       }
 
@@ -88,7 +111,7 @@
 
           }
         }
-      }
+      }*/
     </script>
 
   </body>

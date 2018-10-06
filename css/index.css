@@ -4,6 +4,7 @@
 }
 
 body {
+  font-family: arial;
 }
 
 a {
@@ -86,6 +87,51 @@ a:hover {
   cursor: pointer;
   height: 70px;
   width: 215px;
+}
+
+#registerForm {
+  display: grid;
+  grid-template-columns: 3fr 2fr 2fr 3fr;
+  grid-template-rows: auto auto auto auto auto;
+  margin: 50px;
+}
+.registerContent {
+  margin-top: 10px;
+}
+
+#usernameTxt {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+
+#usernameInp {
+  grid-column: 3/4;
+  grid-row: 1/2;
+}
+
+#passwordTxt {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+
+#passwordInp {
+  grid-column: 3/4;
+  grid-row: 2/3;
+}
+
+#emailTxt {
+  grid-column: 2/3;
+  grid-row: 3/4;
+}
+
+#emailInp {
+  grid-column: 3/4;
+  grid-row: 3/4;
+}
+
+#registerBtn {
+  grid-column: 2/4;
+  grid-row: 4/5;
 }
 
 .content {
