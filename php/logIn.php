@@ -19,7 +19,7 @@
     header('Location: index.php');
   }
   else if (!isset($_POST['username'])){
-    echo $twig->render('logIn.html', array());
+    echo $twig->render('index.html', array());
   }
   else {
     $data['username'] = $_POST['username'];
@@ -31,6 +31,6 @@
       header('Location: index.php');
     }
     else {
-      echo $twig->render('logIn.html', $res);
+      echo $twig->render('index.html', $res);
     }
   }

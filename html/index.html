@@ -15,8 +15,9 @@
   </head>
   <body>
     <div class="container">
-      <div class="header">
-        <h1>SimpleForum</h1>
+      <div id="header">
+        <img src="../logo/logo_png.png" height="90" id="logo">
+        <h1 id="forumName">DownToEarth Forum</h1>
       </div>
       <div class="article">
         <a href="index.php">
@@ -66,9 +67,9 @@
                 {% if topics %}<div>
                   {% for topic in topics %}
                     {% if topic.categoryId == category.categoryId %}
-                      
+
                       <p><a href="topic.php?id={{ topic.topicId }}">{{ topic.topicName }}</a></p>
-                      
+
                   {% endif %}
                 {% endfor %}
               {% endif %}</div>
@@ -84,7 +85,7 @@
     </div>
 
     <script>
-      
+
       $( function() {
         $( "#accordion" ).accordion({
           collapsible: true
