@@ -14,25 +14,41 @@
         <h1>{{ topic.topicName }}</h1>
       </div>
       <div class="article">
-        <div class="title">
-          <a href="index.php">Home</a>
-        </div>
+        <a href="index.php">
+          <div class="btnGeneral" id="btnForum">
+            <h2 class="btnTxt">Forum</h2>
+          </div>
+        </a>
         {% if loggedIn == "true" %}
-          <div class="logIn">
-            <a href="profile.php">Profile</a>
+        <a href="profile.php">
+          <div class="btnGeneral">
+            <h2 class="btnTxt">Profile</h2>
           </div>
-          <div class="logOut">
-            <form class="logOutForm" method="POST" action="index.php">
-              <input type="hidden" name="logOutForm" value="1">
-              <input type="submit" value="Log out">
-            </form>
-          </div>
+        </a>
+        <div class="btnGeneral">
+          <form class="logOutForm" method="POST" action="topic.php?id={{id}}">
+            <input type="hidden" name="logOutForm" value="1">
+            <input type="submit" value="Log out" id="logoutButton">
+          </form>
+        </div>
+        <div class="btnGeneral" id="logInField">
+
+        </div>
         {% else %}
-          <div class="logIn">
-            <a href="logIn.php">Log in</a>
-          </div>
-          <div class="logOut">
-            <a href="register.php">Sign up</a>
+          <div class="btnGeneral" id="btnLogin"> </div>
+
+          <a href="register.php">
+            <div class="btnGeneral" id="btnLogout">
+              <h2 class="btnTxt">Sign up</h2>
+            </div>
+          </a>
+          <div class="btnGeneral" id="logInField">
+            <form id="loginForm" method="POST" action="logIn.php">
+              <input type="hidden" name="loginForm" value="0">
+              <input type="text" name="username" placeholder="Username" required>
+              <input type="password" name="password" placeholder="Password" required>
+              <input type="submit" value="Log in">
+            </form>
           </div>
         {% endif %}
         <div class="content">
