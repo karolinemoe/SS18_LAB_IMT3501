@@ -41,7 +41,13 @@
             <p>Posted by {{ topic.username }}</p>
             <p>{{ topic.timestamp }}</p>
           </div>
-
+          <br><br>
+          {% for reply in replies %}
+            <p><b>{{ reply.username }}</b></p>
+            <p>{{ reply.content }}</p>
+            <p>{{ reply.timestamp }}</p>
+            <br><br>
+          {% endfor %}
         </div>
       </div>
       <div class="navLeft">

@@ -6,6 +6,7 @@
   require_once '../classes/User.php';
   require_once '../classes/Category.php';
   require_once '../classes/Topic.php';
+  require_once '../classes/Reply.php';
 
   $loader = new Twig_Loader_Filesystem('../html');
   $twig = new Twig_Environment($loader, array(
@@ -18,12 +19,12 @@
   $user = new User($db);
   $category = new Category($db);
   $topic = new Topic($db);
-//  $reply = new Reply($db);
+  $reply = new Reply($db);
 
   if ($user->isLoggedIn()) {
     $data['loggedIn'] = "true";
   }
   $data['categories'] = $category->getCategories();
   $data['topic'] = $topic->getTopicById($data['id']);
-  //$data['replies'] = $reply->getReplies();
+  $data['replies'] = $reply->getRepliesForTopic($data['id']);
   echo $twig->render('topic.html', $data);
