@@ -39,10 +39,22 @@ a {
   background-color: #E8F8FF;
 }
 
-.header {
+#header {
   grid-column: 2/3;
   grid-row: 1/2;
   background-color: #3399CC;
+  display: grid;
+  grid-template-columns: 100px auto;
+}
+
+#logo {
+  margin: 5px;
+  grid-column: 1/2;
+}
+
+#forumName {
+  grid-column: 2/3;
+  align-self: center;
 }
 
 .btnGeneral {
