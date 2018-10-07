@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" media="screen" href="../css/index.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -63,9 +62,23 @@
           <div id="accordion">
           {% if categories %}
             {% for category in categories %}
-                <h3>{{ category.categoryName }}</h3>
+                <h3>{{ category.categoryName }} </h3>
                 {% if topics %}<div>
-                <h4>Topics:</h4><br>
+                <h4>Topics:                         <button class="open-button" onclick="openForm()">New Topic</button></h4><br>
+                <div class="form-popup" id="myForm">
+                  <form action="/action_page.php" class="form-container">
+                    <h1>New Topic</h1>
+
+                    <label for="name"><b>Topic Name</b></label>
+                    <input type="text" placeholder="Enter name" name="name" required>
+
+                    <label for="content"><b>Content</b></label>
+                    <input type="text" placeholder="Whats on your mind?" name="content" required>
+
+                    <button type="submit" class="btn">Create topic</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                  </form>
+                </div>
                   {% for topic in topics %}
                     {% if topic.categoryId == category.categoryId %}
                       
@@ -87,17 +100,30 @@
     </div>
 
     <script>
-      
+
       $( function() {
         $( "#accordion" ).accordion({
           collapsible: true
         });
-        $( ".selector" ).accordion({
-          active: false
-        });
+       
+        
       } );
+            var active = $( ".selector" ).accordion( "option", "active" );
+ 
+// Setter
+      $( ".selector" ).accordion( "option", "active", 2 );
 
-      var Topics = document.getElementsByClassName("Topics"), i;
+      
+
+      function openForm() {
+        document.getElementById("myForm").style.display = "block";
+      }
+
+      function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+      }
+
+      //var Topics = document.getElementsByClassName("Topics"), i;
       //Topics.style. = "none";
 
       /*for (var i = 0; i < Topics.length; i ++) {
