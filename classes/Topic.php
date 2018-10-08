@@ -14,7 +14,7 @@ Class Topic {
 			$sql = "INSERT INTO `topics`(`topicName`, `description`, `timestamp`, `categoryId`, `userId`) VALUES (?,?,?,?,?)";
 
 			$sth = $this->db->prepare($sql);
-			$sth->execute(array($data['topicName'], $data['content'], $data['timestamp'], "2", $data['user']));
+			$sth->execute(array($data['topicName'], $data['content'], $data['timestamp'], $data['categoryId'], $data['user']));
 
 			$sql = "SELECT `topicId` FROM `topics` ORDER BY `timestamp` DESC LIMIT 1";
 			$sth = $this->db->prepare($sql);
@@ -47,7 +47,7 @@ Class Topic {
 
 	public function getTopicById($id) {
 		try {
-			$sql = 'SELECT t.topicName, t.description, t.timestamp, u.username
+			$sql = 'SELECT t.topicId, t.topicName, t.description, t.timestamp, u.username
 							FROM topics t
 							INNER JOIN user u ON t.userId = u.userId
 							WHERE t.topicId = ?';

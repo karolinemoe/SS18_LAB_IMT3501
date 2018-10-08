@@ -11,12 +11,12 @@ $data = [];
 
 $data['topicName'] = $_POST['name'];
 $data['content'] = $_POST['content'];
-$data['category'] = $_POST['category'];
+$data['categoryId'] = $_POST['categoryId'];
 $data['user'] = $_SESSION['uid'];
 $t=time();
 $data['timestamp'] = (date("Y-m-d H-i-s",$t));
 
-echo $data['topicName'], "   ", $data['content'], "   ", $data['category'], "    ", $data['timestamp'];
+echo "Name:". $data['topicName']. "Content:". $data['content']. "ID:".$data['categoryId']. "Resten:". $data['timestamp'];
 
 $res = $topic->newTopic($data);
 //echo $res['id'];

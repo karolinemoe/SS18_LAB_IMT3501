@@ -60,6 +60,13 @@
             </div>
             <p id="topicContent">{{ topic.description }} <p>
           </div>
+          {% if loggedIn == true %}
+            <form class="inputForm" id="newComment" method="POST" action="newReply.php">
+              <input type="hidden" name="topicId" value="{{ topic.topicId }}">
+              <input type="text" name="content" placeholder="Write a new reply" required>
+              <input type="submit" value="Post" />
+            </form>
+          {% endif %}
           {% for reply in replies %}
           <div id="replyDiv">
             <div id="replyInfo">

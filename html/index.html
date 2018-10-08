@@ -60,7 +60,7 @@
         <div class="content"><br>
           <div class="form-popup" id="myForm">
                   <form action="newTopic.php" method="POST" class="form-container">
-                    <h1>New Topic in {{ category.categoryName }}</h1>
+                    <h1>New Topic in</h1><h1 id="categoryName">CategorName</h1>
 
                     <label for="name"><b>Topic Name</b></label>
                     <input type="text" placeholder="Enter name" name="name" required>
@@ -68,7 +68,7 @@
                     <label for="content"><b>Content</b></label>
                     <input type="text" placeholder="Whats on your mind?" name="content" required>
 
-                    <input type="hidden" name="category" value="">
+                    <input type="hidden" id="categoryId" name="categoryId" value="categoryId">
 
                     <button type="submit" class="btn">Create topic</button>
                     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
@@ -80,7 +80,7 @@
             {% for category in categories %}
                 <h3>{{ category.categoryName }} </h3>
                 {% if topics %}<div>
-                <h4>Topics:                         <button class="open-button" onclick="openForm()">New Topic</button></h4><br>
+                <h4>Topics:                         <button class="open-button" onclick="openForm(' {{ category.categoryId }} ', ' {{ category.categoryName }} ')">New Topic</button></h4><br>
                   {% for topic in topics %}
                     {% if topic.categoryId == category.categoryId %}
 
@@ -119,8 +119,10 @@
 
 
 
-      function openForm() {
+      function openForm(categoryId, categoryName) {
         document.getElementById("myForm").style.display = "block";
+        document.getElementById("categoryId").value = categoryId;
+        document.getElementById("categoryName").innerHTML = categoryName;
       }
 
       function closeForm() {
