@@ -15,7 +15,7 @@ Class Reply {
       $sql = 'SELECT r.content, r.timestamp, u.username
 							FROM replies r
 							INNER JOIN user u ON r.userId = u.userId
-							WHERE r.threadId = ?';
+							WHERE r.topicId = ?';
 			$sth = $this->db->prepare($sql);
 			$sth->execute(array($id));
 			$replies = [];
