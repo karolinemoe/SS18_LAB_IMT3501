@@ -9,6 +9,18 @@ Class Topic {
     	$this->db = $db;
 	}
 
+	public function newTopic($data) {
+		try {
+			$now = 'now()';
+			$sql = 'INSERT INTO `topics`(`topicName`, `description`, `timestamp`, `categoryId`, `userId`) VALUES (?,?,?,?,?)';
+			$sth = $this->db->prepare($sql);
+			$sth->execute(array($data['topicName'], $data['content'], $now, $data['category'], "1"));
+
+		} catch(PDOException $e) {
+			echo 'failed';
+		}
+	}
+
 	public function getTopics() {
 		try {
 			$sql = 'SELECT * FROM topics';

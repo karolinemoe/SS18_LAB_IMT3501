@@ -57,8 +57,24 @@
             </form>
           </div>
         {% endif %}
-        <div class="content">
-          <div id= title><h1>Categories</h1></div>
+        <div class="content"><br>
+          <div class="form-popup" id="myForm">
+                  <form action="newTopic.php" method="POST" class="form-container">
+                    <h1>New Topic in {{ category.categoryName }}</h1>
+
+                    <label for="name"><b>Topic Name</b></label>
+                    <input type="text" placeholder="Enter name" name="name" required>
+
+                    <label for="content"><b>Content</b></label>
+                    <input type="text" placeholder="Whats on your mind?" name="content" required>
+                    <script type="text/javascript">var activeCategory =  $( ".acc" ).accordion( "option", "active" );
+                    </script>
+                    <input type="hidden" name="category" value=activeCategory>
+
+                    <button type="submit" class="btn">Create topic</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                  </form>
+                </div><br>
           <div id=ac>
           <div id="accordion">
           {% if categories %}
@@ -66,20 +82,6 @@
                 <h3>{{ category.categoryName }} </h3>
                 {% if topics %}<div>
                 <h4>Topics:                         <button class="open-button" onclick="openForm()">New Topic</button></h4><br>
-                <div class="form-popup" id="myForm">
-                  <form action="/action_page.php" class="form-container">
-                    <h1>New Topic</h1>
-
-                    <label for="name"><b>Topic Name</b></label>
-                    <input type="text" placeholder="Enter name" name="name" required>
-
-                    <label for="content"><b>Content</b></label>
-                    <input type="text" placeholder="Whats on your mind?" name="content" required>
-
-                    <button type="submit" class="btn">Create topic</button>
-                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-                  </form>
-                </div>
                   {% for topic in topics %}
                     {% if topic.categoryId == category.categoryId %}
 
@@ -104,15 +106,13 @@
 
       $( function() {
         $( "#accordion" ).accordion({
-          collapsible: true
+          collapsible: true,
+          active: false,
+          heightStyle: "content"
         });
        
         
       } );
-            var active = $( ".selector" ).accordion( "option", "active" );
- 
-// Setter
-      $( ".selector" ).accordion( "option", "active", 2 );
 
       
 
