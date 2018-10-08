@@ -26,10 +26,11 @@
     $data['password'] = $_POST['password'];
 
     $res = $user->logIn($data);
+    echo $res['message'];
     if ($res['status'] == 'OK') {
       header('Location: index.php');
     }
     else {
-      echo $twig->render('index.html', $res);
+      echo $twig->render('logIn.html', $res);
     }
   }
