@@ -14,7 +14,7 @@ $data['content'] = $_POST['content'];
 $data['category'] = $_POST['category'];
 $data['user'] = $_SESSION['uid'];
 $t=time();
-$data['timestamp'] = (date("Y-m-d h-i-s",$t));
+$data['timestamp'] = (date("Y-m-d H-i-s",$t));
 
 echo $data['topicName'], "   ", $data['content'], "   ", $data['category'], "    ", $data['timestamp'];
 
