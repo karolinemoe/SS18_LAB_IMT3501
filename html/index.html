@@ -27,7 +27,7 @@
         {% if loggedIn == "true" %}
           <a href="profile.php">
             <div class="btnGeneral">
-              <h2 class="btnTxt">Profile</h2>
+              
             </div>
           </a>
           <div class="btnGeneral">
@@ -67,9 +67,8 @@
 
                     <label for="content"><b>Content</b></label>
                     <input type="text" placeholder="Whats on your mind?" name="content" required>
-                    <script type="text/javascript">var activeCategory =  $( ".acc" ).accordion( "option", "active" );
-                    </script>
-                    <input type="hidden" name="category" value=activeCategory>
+                    
+                    <input type="hidden" name="category" value="">
 
                     <button type="submit" class="btn">Create topic</button>
                     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
@@ -123,6 +122,11 @@
       function closeForm() {
         document.getElementById("myForm").style.display = "none";
       }
+
+      var active = ($( ".acc" ).accordion( "option", "active" ));
+
+
+      document.getElementById("category").value = active;
 
       //var Topics = document.getElementsByClassName("Topics"), i;
       //Topics.style. = "none";

@@ -11,10 +11,14 @@ Class Topic {
 
 	public function newTopic($data) {
 		try {
-			$now = 'now()';
-			$sql = 'INSERT INTO `topics`(`topicName`, `description`, `timestamp`, `categoryId`, `userId`) VALUES (?,?,?,?,?)';
+			$res = [];
+			$sql = "INSERT INTO `topics`(`topicName`, `description`, `timestamp`, `categoryId`, `userId`) VALUES (?,?,?,?,?);
+			SELECT topicId FROM `topics` ORDER BY timestamp DESC LIMIT 1";
 			$sth = $this->db->prepare($sql);
-			$sth->execute(array($data['topicName'], $data['content'], $now, $data['category'], "1"));
+			$sth->execute(array($data['topicName'], $data['content'], $data['timestamp'], $data['category'], "1"));
+			$res['id'] = $sth->fetch(PDO::FETCH_ASSOC);
+			$res['status'] = "OK";
+			return $res;
 
 		} catch(PDOException $e) {
 			echo 'failed';
