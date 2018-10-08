@@ -9,6 +9,25 @@ Class Topic {
     	$this->db = $db;
 	}
 
+	public function newTopic($data) {
+		try {
+			$sql = "INSERT INTO `topics`(`topicName`, `description`, `timestamp`, `categoryId`, `userId`) VALUES (?,?,?,?,?)";
+
+			$sth = $this->db->prepare($sql);
+			$sth->execute(array($data['topicName'], $data['content'], $data['timestamp'], "2", $data['user']));
+
+			$sql = "SELECT `topicId` FROM `topics` ORDER BY `timestamp` DESC LIMIT 1";
+			$sth = $this->db->prepare($sql);
+			$sth->execute();
+			$res = $sth->fetchColumn();
+			//$res['status'] = "OK";
+			return $res;
+
+		} catch(PDOException $e) {
+			echo 'failed';
+		}
+	}
+
 	public function getTopics() {
 		try {
 			$sql = 'SELECT * FROM topics';

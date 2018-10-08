@@ -23,15 +23,44 @@ In this assignment you have to continue the development process of your forum ap
 
 Divide the team into smaller groups (1-2), each of is responisible for one module of the application.  This assignment has two submissions, a running application and an installation guide. 
 
+
 ### Installation
-Clone project to your htdocs folder in XAMPP
-Navigate to your folder and run 'composer require "twig/twig:^2.0"
+1. It is important to have Docker installed before deploy the forum.
 
-Twig documentation:
-https://twig.symfony.com/ 
+```sh
+sudo apt update
+```
 
-### Installation (not complete)
-Pull the repo
-install docker and docker-composer
-docker-composer up
+```sh
+sudo apt install docker
+```
+
+```sh
+sudo apt install docker-compose 
+```
+
+2. Clone the documents from git and run the forum
+
+__It is important that you have git installed and have a user in GitHub so you can clone the documents__
+
+```sh
+sudo apt install git       
+```
+
+```sh
+sudo git clone https://github.com/karolinemoe/SS18_LAB_IMT3501.git         
+```
+
+```sh
+cd SS18_LAB_IMT3501/
+```
+
+If you like, you can press __ctrl+shift+t__ to open a new tab in terminal so you can run this in background.
+
+```sh
+sudo docker-compose up
+```
+> It takes some time to deploy it, so be patient
+
+After you deploy it, you can open your favorite browser and type localhost. It will direct you to the forum, the url will be localhost/php/ 
 
