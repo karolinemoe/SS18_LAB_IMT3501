@@ -47,7 +47,7 @@ Class Topic {
 
 	public function getTopicById($id) {
 		try {
-			$sql = 'SELECT t.topicName, t.description, t.timestamp, u.username
+			$sql = 'SELECT t.topicId, t.topicName, t.description, t.timestamp, u.username
 							FROM topics t
 							INNER JOIN user u ON t.userId = u.userId
 							WHERE t.topicId = ?';

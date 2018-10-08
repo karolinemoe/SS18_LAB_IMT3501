@@ -29,4 +29,27 @@ Class Reply {
       echo 'Connection failed: ' . $e->getMessage();
 		}
   }
+
+	public function newReply($data) {
+		try {
+      $sql = 'INSERT INTO `replies`(`content`, `userId`, `topicId`, `subReplyOf`) VALUES(?, ?, ?, ?)';
+			$sth = $this->db->prepare($sql);
+			$data['subReplyOf'] = NULL;
+			$sth->execute(array($data['content'], $data['userId'], $data['topicId'], $data['subReplyOf']));
+    } catch(PDOException $e) {
+      // NOTE DON'T USE THIS IN PRODUCTION
+      // NOTE NEVER GIVE CRUCIAL INFORMATION TO USERS
+      echo 'Connection failed: ' . $e->getMessage();
+		}
+		if ($sth->rowCount()==1) {
+      $res['status'] = 'OK';
+      $res['message'] = 'New comment was added';
+
+    }
+    else {
+      $res['status'] = 'ERROR';
+      $res['message'] = 'New comment was not added';
+    }
+    return $res;
+	}
 }
