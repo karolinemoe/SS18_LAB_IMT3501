@@ -44,6 +44,10 @@ sudo apt install docker-compose
 __It is important that you have git installed and have a user in GitHub so you can clone the documents__
 
 ```sh
+sudo apt install git       
+```
+
+```sh
 sudo git clone https://github.com/karolinemoe/SS18_LAB_IMT3501.git         
 ```
 
