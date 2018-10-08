@@ -31,7 +31,38 @@ Twig documentation:
 https://twig.symfony.com/ 
 
 ### Installation (not complete)
-Pull the repo
-install docker and docker-composer
-docker-composer up
+1. It is important to have Docker installed before deploy the forum.
+
+```sh
+sudo apt install docker
+```
+
+```sh
+sudo apt install docker-compose 
+```
+__After you finish downloading, update it so you keep up with the youth__
+
+```sh
+sudo apt update
+```
+
+#### Clone the documents from git and run the forum
+__It is important that you have git installed and have a user in GitHub so you can clone the documents__
+
+```sh
+sudo git clone https://github.com/karolinemoe/SS18_LAB_IMT3501.git         
+```
+
+```sh
+cd SS18_LAB_IMT3501/
+```
+
+If you like, you can press __ctrl+shift+t__ to open a new tab in terminal so you can run this in background.
+
+```sh
+sudo docker-compose up
+```
+> It takes some time to deploy it, so be patient
+
+After you deploy it, you can open your favorite browser and type localhost. It will direct you to the forum, the url will be localhost/php/ 
 
