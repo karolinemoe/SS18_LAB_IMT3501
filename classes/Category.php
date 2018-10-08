@@ -22,7 +22,7 @@ Class Category {
 		}  catch(PDOException $e) {
       // NOTE DON'T USE THIS IN PRODUCTION
       // NOTE NEVER GIVE CRUCIAL INFORMATION TO USERS
-      echo 'Connection failed: ' . $e->getMessage();
+      echo 'Connection failedXD: ' . $e->getMessage();
 		}
 	}
 }
