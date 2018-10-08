@@ -10,4 +10,5 @@ RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 ADD . /var/www/html/
 WORKDIR "/var/www/html/"
 RUN composer require "twig/twig:^2.0"
+EXPOSE 5000
 EXPOSE 80

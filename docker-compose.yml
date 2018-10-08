@@ -5,7 +5,9 @@ services:
   web:
     build: .
     ports:
-      - "8081:500"
+      - "8080:8080"
+  redis:
+    image: "php:7.2-apache"
   db:
     image: mariadb
     restart: always
@@ -16,9 +18,5 @@ services:
       MYSQL_PASSWORD: password
     volumes:
         - ./schema:/docker-entrypoint-initdb.d
-
-  adminer:
-    image: adminer
-    restart: always
     ports:
-      - 8080:8080
+      - "3306:3306"
