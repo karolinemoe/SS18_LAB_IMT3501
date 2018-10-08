@@ -17,10 +17,9 @@ $data['timestamp'] = (date("Y-m-d h-i-s",$t));
 echo $data['topicName'], "   ", $data['content'], "   ", $data['category'], "    ", $data['timestamp'];
 
 $res = [];
-$res = $topic->newTopic($data);
-echo $res['id'];
-$id = (int) $res['id'];
-$headerloc = 'Location: topic.php?id=' + $id;
-echo $headerloc;
+$topic->newTopic($data);
+//echo $res['id'];
+//$id = (int) $res['id'];
+$headerloc = 'Location: topic.php?id=';
 
 header($headerloc);

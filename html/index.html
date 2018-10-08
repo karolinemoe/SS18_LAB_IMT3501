@@ -107,9 +107,12 @@
         $( "#accordion" ).accordion({
           collapsible: true,
           active: false,
-          heightStyle: "content"
+          heightStyle: "content",
+          activate: function( event, ui ) {
+            var name =  ui.newHeader[0].childNodes[1].innerHTML;
+            console.log(name);
+          }
         });
-       
         
       } );
 
@@ -122,6 +125,10 @@
       function closeForm() {
         document.getElementById("myForm").style.display = "none";
       }
+
+    
+    
+
 
       var active = ($( ".acc" ).accordion( "option", "active" ));
 
