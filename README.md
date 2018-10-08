@@ -40,6 +40,7 @@ sudo apt install docker-compose
 ```
 
 * Clone the documents from git and run the forum
+
 __It is important that you have git installed and have a user in GitHub so you can clone the documents__
 
 ```sh
