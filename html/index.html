@@ -108,9 +108,10 @@
           collapsible: true,
           active: false,
           heightStyle: "content",
-          activate: function( event, ui ) {
-            var name =  ui.newHeader[0].childNodes[1].innerHTML;
-            console.log(name);
+          active: function( event, ui ) {
+              var active = $( ".selector" ).accordion( "option", "active" );
+              var text= ("#accordion h3").eq(active).text();
+              console.log(text);
           }
         });
         
