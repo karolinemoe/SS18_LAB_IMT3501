@@ -11,7 +11,7 @@ class User {
     if (isset($_POST['logOutForm'])) {
       unset($_SESSION['uid']);
       // Avoid Session Fixation by changing session id on logout
-      session_regenerate_id(); 
+      session_regenerate_id();
     }
     else if (isset($_SESSION['uid'])) {
       $this->uid = $_SESSION['uid'];
@@ -58,7 +58,7 @@ class User {
           $res['message'] = 'Logged in';
           $this->uid = $resSql['userId'];
           // Avoid Session Fixation by changing session id on login
-          session_regenerate_id(); 
+          session_regenerate_id();
           // NOTE THIS MUST BE CHANGED
           $_SESSION['uid'] = $this->uid;
         }
@@ -82,5 +82,9 @@ class User {
 
   public function isLoggedIn() {
     return $this->uid != -1;
+  }
+
+  public function getUser() {
+    return $uid;
   }
 }

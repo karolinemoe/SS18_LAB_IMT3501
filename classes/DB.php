@@ -2,10 +2,10 @@
 
 class DB {
   private static $db=null;
-  private $dsn = 'mysql:dbname=ss18_lab_imt3501;port=3306;host=db';
+  private $dsn = 'mysql:dbname=ss18_lab_imt3501;port=3306;host=127.0.0.1';
   // NOTE SHOULD ADD A USERNAME AND A PASSWORD TO THE DB
   private $user = 'root';
-  private $password = 'root';
+  private $password = '';
   private $dbh = null;
 
   private function __construct() {
