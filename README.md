@@ -24,7 +24,7 @@ In this assignment you have to continue the development process of your forum ap
 Divide the team into smaller groups (1-2), each of is responisible for one module of the application.  This assignment has two submissions, a running application and an installation guide. 
 
 
-### Installation (not complete)
+### Installation
 1. It is important to have Docker installed before deploy the forum.
 
 ```sh
@@ -39,7 +39,7 @@ sudo apt install docker
 sudo apt install docker-compose 
 ```
 
-* Clone the documents from git and run the forum
+2. Clone the documents from git and run the forum
 
 __It is important that you have git installed and have a user in GitHub so you can clone the documents__
 
