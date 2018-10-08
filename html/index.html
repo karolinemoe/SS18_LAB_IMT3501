@@ -25,11 +25,11 @@
           </div>
         </a>
         {% if loggedIn == "true" %}
-          <a href="profile.php">
+          <!--<a href="profile.php">-->
             <div class="btnGeneral">
-              
+
             </div>
-          </a>
+          <!--</a>-->
           <div class="btnGeneral">
             <form class="logOutForm" method="POST" action="index.php">
               <input type="hidden" name="logOutForm" value="1">
@@ -67,7 +67,7 @@
 
                     <label for="content"><b>Content</b></label>
                     <input type="text" placeholder="Whats on your mind?" name="content" required>
-                    
+
                     <input type="hidden" name="category" value="">
 
                     <button type="submit" class="btn">Create topic</button>
@@ -109,11 +109,11 @@
           active: false,
           heightStyle: "content"
         });
-       
-        
+
+
       } );
 
-      
+
 
       function openForm() {
         document.getElementById("myForm").style.display = "block";
