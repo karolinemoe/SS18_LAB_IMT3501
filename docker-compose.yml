@@ -1,15 +1,17 @@
 version: '3.1'
 
 services:
-  
   web:
     build: .
     ports:
-      - "8080:8080"
-  redis:
-    image: "php:7.2-apache"
+      - 80:80
+      - 443:443
+    links:
+      - db
   db:
     image: mariadb
+    ports:
+      - 3306:3306
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -18,5 +20,3 @@ services:
       MYSQL_PASSWORD: password
     volumes:
         - ./schema:/docker-entrypoint-initdb.d
-    ports:
-      - "3306:3306"
