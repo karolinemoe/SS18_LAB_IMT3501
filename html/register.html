@@ -6,7 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" media="screen" href="../css/index.css">
     <link rel="icon" href="../logo/favicon.png">
+    <script src='https://www.google.com/recaptcha/api.js?render=6LfB-nMUAAAAANdTIUlORRKmwjWLari9Qi2700AH'></script>
+    <script>
+      grecaptcha.ready(function() {
+        grecaptcha.execute('6LfB-nMUAAAAANdTIUlORRKmwjWLari9Qi2700AH', {action: 'login'})
+          .then(function(token) {
+          ...
+        });
+      });
 
+    </script>
+    <script type="text/javascript">
+      var onSubmit = function(response) {
+        document.getElementById("registerForm").submit(); // send response to your backend service
+      };
+    </script>
     <title>Mainpage</title>
   </head>
   <body>
@@ -57,9 +71,8 @@
             <input name="password" class="registerContent" id="passwordInp" type="password" placeholder="Password" required>
             <label for="email" class="registerContent" id="emailTxt">Email</label>
             <input name="email" class="registerContent" id="emailInp" type="email" placeholder="example.user@mail.com" required>
-            <input name="register" class="registerContent" id="registerBtn" type="submit" value="Register">
+            <input name="register" class="g-recaptcha" data-sitekey="6LfB-nMUAAAAANdTIUlORRKmwjWLari9Qi2700AH" data-callback="onSubmit" id="registerBtn" type="submit" value="Register">
           </form>
-
           <div class="error">
             {% if status %}
               <h3>{{ message }}</h3>
