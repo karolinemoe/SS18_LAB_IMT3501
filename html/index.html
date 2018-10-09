@@ -25,11 +25,11 @@
           </div>
         </a>
         {% if loggedIn == "true" %}
-          <!--<a href="profile.php">-->
+          <a href="profile.php">
             <div class="btnGeneral">
-
+                <h2 class="btnTxt">Profile</h2>
             </div>
-          <!--</a>-->
+          </a>
           <a><div class="btnGeneral">
             <form class="logOutForm" method="POST" action="index.php">
               <input type="hidden" name="logOutForm" value="1">
@@ -80,7 +80,7 @@
             {% for category in categories %}
                 <h3>{{ category.categoryName }} </h3>
                 {% if topics %}<div>
-                <h4>Topics:                         
+                <h4>Topics:
                 {% if loggedIn == "true" %}
                   <button class="open-button" onclick="openForm(' {{ category.categoryId }} ', ' {{ category.categoryName }} ')">New Topic</button>
                   </h4><br>

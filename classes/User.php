@@ -85,6 +85,105 @@ class User {
   }
 
   public function getUser() {
-    return $uid;
+    return $this->uid;
+  }
+
+  public function newPassword($data) {
+    $current = $this->currentPass($data);
+    if ($current == "Incorrect") {
+      $res['status'] = "ERROR";
+      $res['message'] = "Wrong current password";
+    }
+    else if ($this->checkOldPwords($data) == "Used") {
+
+      $res['status'] = "ERROR";
+      $res['message'] = "Password has already been used on this site. Please try again.";
+    }
+    else {
+      try {
+        $sql = 'INSERT INTO oldpwhash(userId, salt, pWHash) VALUES (?, ?, ?)';
+        $sth = $this->db->prepare($sql);
+        $salt = password_hash("Auto", PASSWORD_DEFAULT);
+        $oldpword = password_hash($data['oldpword'], PASSWORD_DEFAULT);
+        $sth->execute(array($data['userId'], $salt, $oldpword));
+      }
+      catch(PDOException $e) {
+        // NOTE DON'T USE THIS IN PRODUCTION
+        // NOTE NEVER GIVE CRUCIAL INFORMATION TO USERS
+        echo 'Connection failed: ' . $e->getMessage();
+      }
+      $result = [];
+      if ($sth->rowCount()==1) {
+        try {
+          $sql = 'UPDATE user SET password=? WHERE userId=?';
+          $sth = $this->db->prepare($sql);
+          $password = password_hash($data['newpword'], PASSWORD_DEFAULT);
+          $sth->execute(array($password, $data['userId']));
+        }
+        catch(PDOException $e) {
+          // NOTE DON'T USE THIS IN PRODUCTION
+          // NOTE NEVER GIVE CRUCIAL INFORMATION TO USERS
+          echo 'Connection failed: ' . $e->getMessage();
+        }
+        if ($sth->rowCount()==1) {
+          $res['status'] = 'OK';
+          $res['message'] = 'Password was changed';
+        }
+        else {
+          $res['status'] = 'ERROR';
+          $res['message'] = 'Password was not changed';
+        }
+      }
+      else {
+        $res['status'] = 'ERROR';
+        $res['message'] = 'Password was not changed';
+      }
+    }
+    return $res;
+  }
+
+  public function checkOldPwords($data) {
+    try {
+      $sql = 'SELECT * FROM oldpwhash WHERE userId=?';
+      $sth = $this->db->prepare($sql);
+      $sth->execute(array($data['userId']));
+      $used = "Used";
+      $notUsed = "NotUsed";
+      $pwords = [];
+      while($row = $sth->fetch(PDO::FETCH_ASSOC)) {
+        $pwords[] = $row;
+        if (password_verify($data['newpword'], $row['pWHash'])) {
+          return $used;
+        }
+      }
+      return $notUsed;
+    }
+    catch(PDOException $e) {
+      // NOTE DON'T USE THIS IN PRODUCTION
+      // NOTE NEVER GIVE CRUCIAL INFORMATION TO USERS
+      echo 'Connection failed: ' . $e->getMessage();
+    }
+  }
+
+  public function currentPass($data) {
+    try {
+      $sql = 'SELECT userId, password FROM user WHERE userId=?';
+      $sth = $this->db->prepare($sql);
+      $sth->execute(array($data['userId']));
+      $resSql = $sth->fetch(PDO::FETCH_ASSOC);
+      $used = "Correct";
+      $notUsed = "Incorrect";
+      if (password_verify($data['oldpword'], $resSql['password'])) {
+        return $used;
+      }
+      else {
+        return $notUsed;
+      }
+    }
+    catch(PDOException $e) {
+      // NOTE DON'T USE THIS IN PRODUCTION
+      // NOTE NEVER GIVE CRUCIAL INFORMATION TO USERS
+      echo 'Connection failed: ' . $e->getMessage();
+    }
   }
 }

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" media="screen" href="../css/index.css">
+
+    <title>SimpleForum</title>
+  </head>
+  <body>
+    <div class="container">
+      <div id="header">
+        <img src="../logo/logo_png.png" height="90" id="logo">
+        <h1 id="forumName">DownToEarth Forum</h1>
+      </div>
+      <div class="article">
+        <a href="index.php">
+          <div class="btnGeneral" id="btnForum">
+            <h2 class="btnTxt">Forum</h2>
+          </div>
+        </a>
+        {% if loggedIn == "true" %}
+          <a href="profile.php">
+            <div class="btnGeneral">
+                <h2 class="btnTxt">Profile</h2>
+            </div>
+          </a>
+          <a><div class="btnGeneral">
+            <form class="logOutForm" method="POST" action="index.php">
+              <input type="hidden" name="logOutForm" value="1">
+              <input type="submit" value="Log out" id="logoutButton">
+            </form>
+          </div></a>
+          <div class="btnGeneral" id="logInField">
+
+          </div>
+        {% else %}
+          <div class="btnGeneral" id="btnLogin">
+
+          </div>
+          <a href="register.php">
+            <div class="btnGeneral" id="btnLogout">
+              <h2 class="btnTxt">Sign up</h2>
+            </div>
+          </a>
+          <div class="btnGeneral" id="logInField">
+            <form id="loginForm" method="POST" action="logIn.php">
+              <input type="hidden" name="loginForm" value="0">
+              <input type="text" name="username" placeholder="Username" required>
+              <input type="password" name="password" placeholder="Password" required>
+              <input type="submit" value="Log in">
+            </form>
+          </div>
+        {% endif %}
+        <div class="content"><br>
+          <form id="registerForm" action="profile.php" method ="POST">
+            <label for="oldpword" class="registerContent" id="usernameTxt">Old password:</label>
+            <input name="oldpword" class="registerContent" id="usernameInp" type="password" placeholder="Old password" required>
+            <label for="newpword" class="registerContent" id="passwordTxt">New password:</label>
+            <input name="newpword" class="registerContent" id="passwordInp" type="password" placeholder="New password" oninput="checkOld(this)" required>
+            <label for="confirmpword" class="registerContent" id="emailTxt">Confirm new password:</label>
+            <input name="confirmpword" class="registerContent" id="emailInp" type="password" placeholder="New password" oninput="checkNew(this)" required>
+            <input type="submit" id="registerBtn" value="Confirm" disabled="true">
+          </form>
+          <div class="error">
+            {% if status %}
+              <h3>{{ message }}</h3>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="navLeft">
+      </div>
+      <div class="navRight">
+      </div>
+    </div>
+
+    <script language='javascript' type='text/javascript'>
+      function checkOld(input) {
+          if (input.value == document.getElementById('usernameInp').value) {
+              input.setCustomValidity('New password cannot be the same as the old');
+              document.getElementById("registerBtn").disabled = true;
+          } else {
+              if (input.value != document.getElementById('emailInp').value) {
+                document.getElementById("registerBtn").disabled = true;
+              }
+              else {
+                document.getElementById("registerBtn").disabled = false;
+                document.getElementById('emailInp').setCustomValidity('');
+              }
+              input.setCustomValidity('');
+          }
+      }
+
+      function checkNew(input) {
+          if (input.value != document.getElementById('passwordInp').value) {
+              input.setCustomValidity('New password must match');
+              document.getElementById("registerBtn").disabled = true;
+          } else {
+              input.setCustomValidity('');
+              if (input.value != document.getElementById('usernameInp').value) {
+                document.getElementById("registerBtn").disabled = false;
+              }
+          }
+      }
+    </script>
+
+  </body>
+</html>
