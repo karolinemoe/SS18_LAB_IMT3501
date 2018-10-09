@@ -21,20 +21,22 @@
           </div>
         </a>
         {% if loggedIn == "true" %}
-        <!--<a href="profile.php">-->
-          <div class="btnGeneral">
-
-          </div>
-        <!--</a>-->
+        <div class="btnGeneral"></div>
         <a><div class="btnGeneral">
           <form class="logOutForm" method="POST" action="topic.php?id={{id}}">
             <input type="hidden" name="logOutForm" value="1">
             <input type="submit" value="Log out" id="logoutButton">
           </form>
         </div></a>
-        <div class="btnGeneral" id="logInField">
-
-        </div>
+        {% if isAdmin == "true" %}
+        <a href="adminPage.php">
+          <div class="btnGeneral" id="logInField">
+            <h2>Admin page</h2>
+          </div>
+        </a>
+        {% else %}
+          <div class="btnGeneral" id="logInField"></div>
+        {% endif %}
         {% else %}
           <div class="btnGeneral" id="btnLogin"> </div>
 
@@ -71,11 +73,13 @@
             <p id="replyContent">{{ reply.content }}</p>
           </div>
           {% endfor %}
+          {% if loggedIn == true %}
           <form class="inputForm" id="newComment" method="POST" action="newReply.php">
             <input type="hidden" name="topicId" value="{{ topic.topicId }}">
             <textarea id="replyInput" name="content" placeholder="Write a new reply" required></textarea>
             <input id="newReplyButton" type="submit" value="Post" />
           </form>
+          {% endif %}
         </div>
       </div>
       <div class="navLeft">

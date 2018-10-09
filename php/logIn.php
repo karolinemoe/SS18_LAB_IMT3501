@@ -4,6 +4,7 @@ z<?php
   require_once '../vendor/autoload.php';
   require_once '../classes/DB.php';
   require_once '../classes/User.php';
+  require_once '../classes/LogDB.php';
 
   $loader = new Twig_Loader_Filesystem('../html');
   $twig = new Twig_Environment($loader, array(
@@ -12,7 +13,8 @@ z<?php
   ));
 
   $db = DB::getDBConnection();
-  $user = new User($db);
+  $logdb = LogDB::getDBConnection();
+  $user = new User($db, $logdb);
 
   $data = [];
   if ($user->isLoggedIn()) {
@@ -24,6 +26,7 @@ z<?php
   else {
     $data['username'] = $_POST['username'];
     $data['password'] = $_POST['password'];
+    $data['timestamp'] = (date("Y-m-d H-i-s",$t));
 
     $res = $user->logIn($data);
     header('Location: index.php');

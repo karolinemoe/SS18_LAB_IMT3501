@@ -3,6 +3,7 @@
 
   require_once '../vendor/autoload.php';
   require_once '../classes/DB.php';
+  require_once '../classes/LogDB.php';
   require_once '../classes/User.php';
 
   $loader = new Twig_Loader_Filesystem('../html');
@@ -12,9 +13,13 @@
   ));
 
   $db = DB::getDBConnection();
-  $user = new User($db);
+  $logdb = LogDB::getDBConnection();
+  $user = new User($db, $logdb);
 
   $data = [];
+
+  if(empty($_POST['agree']) || $_POST['agree'] != 'agree')
+
   if ($user->isLoggedIn()) {
     header('Location: index.php');
   }

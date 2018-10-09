@@ -5,8 +5,6 @@
   require_once '../classes/DB.php';
   require_once '../classes/LogDB.php';
   require_once '../classes/User.php';
-  require_once '../classes/Category.php';
-  require_once '../classes/Topic.php';
 
   $loader = new Twig_Loader_Filesystem('../html');
   $twig = new Twig_Environment($loader, array(
@@ -14,11 +12,9 @@
     // Can add cache after finished development for faster loading times
   ));
   $data = [];
-  $logdb = LogDB::getDBConnection();
   $db = DB::getDBConnection();
+  $logdb = LogDB::getDBConnection();
   $user = new User($db, $logdb);
-  $category = new Category($db);
-  $topic = new Topic($db);
 
   if ($user->isLoggedIn()) {
     $data['loggedIn'] = "true";
@@ -27,8 +23,8 @@
   if ($user->isAdmin()) {
     $data['isAdmin'] = 'true';
   }
+  else header('Location: index.php');
 
-  $data['categories'] = $category->getCategories();
-  $data['topics'] = $topic->getTopics();
+  $data['users'] = $user->getUsers();
 
-  echo $twig->render('index.html', $data);
+  echo $twig->render('adminPage.html', $data);
