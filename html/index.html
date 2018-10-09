@@ -80,7 +80,11 @@
             {% for category in categories %}
                 <h3>{{ category.categoryName }} </h3>
                 {% if topics %}<div>
-                <h4>Topics:                         <button class="open-button" onclick="openForm(' {{ category.categoryId }} ', ' {{ category.categoryName }} ')">New Topic</button></h4><br>
+                <h4>Topics:                         
+                {% if loggedIn == "true" %}
+                  <button class="open-button" onclick="openForm(' {{ category.categoryId }} ', ' {{ category.categoryName }} ')">New Topic</button>
+                  </h4><br>
+                {% endif %}
                   {% for topic in topics %}
                     {% if topic.categoryId == category.categoryId %}
 
