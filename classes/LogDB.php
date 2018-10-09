@@ -1,8 +1,8 @@
 <?php
 
-class DB {
+class LogDB {
   private static $db=null;
-  private $dsn = 'mysql:dbname=ss18_lab_imt3501;host=127.0.0.1';
+  private $dsn = 'mysql:dbname=logdb;port=3306;host=127.0.0.1';
   // NOTE SHOULD ADD A USERNAME AND A PASSWORD TO THE DB
   private $user = 'root';
   private $password = '';
@@ -19,9 +19,9 @@ class DB {
   }
 
   public static function getDBConnection() {
-      if (DB::$db==null) {
-        DB::$db = new self();
+      if (LogDB::$db==null) {
+        LogDB::$db = new self();
       }
-      return DB::$db->dbh;
+      return LogDB::$db->dbh;
   }
 }

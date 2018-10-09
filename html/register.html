@@ -6,7 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" media="screen" href="../css/index.css">
     <link rel="icon" href="../logo/favicon.png">
+    <script src='https://www.google.com/recaptcha/api.js?render=6LfB-nMUAAAAANdTIUlORRKmwjWLari9Qi2700AH'></script>
+    <script>
+      grecaptcha.ready(function() {
+        grecaptcha.execute('6LfB-nMUAAAAANdTIUlORRKmwjWLari9Qi2700AH', {action: 'login'})
+          .then(function(token) {
+          ...
+        });
+      });
 
+    </script>
+    <script type="text/javascript">
+      var onSubmit = function(response) {
+        document.getElementById("registerForm").submit(); // send response to your backend service
+      };
+    </script>
     <title>Mainpage</title>
   </head>
   <body>
@@ -50,16 +64,22 @@
         </div>
         {% endif %}
         <div class="content">
-          <form id="registerForm" action="register.php" method ="POST">
+          <form id="registerForm" action="register.php" method ="POST" onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy'); return false; }">
+
             <label for="username" class="registerContent" id="usernameTxt">Username</label>
             <input name="username" class="registerContent" id="usernameInp" type="text" placeholder="Username" required>
             <label for="password" class="registerContent" id="passwordTxt">Password</label>
             <input name="password" class="registerContent" id="passwordInp" type="password" placeholder="Password" required>
             <label for="email" class="registerContent" id="emailTxt">Email</label>
-            <input name="email" class="registerContent" id="emailInp" type="email" placeholder="example.user@mail.com" required>
-            <input name="register" class="registerContent" id="registerBtn" type="submit" value="Register">
-          </form>
+            <input name="email" class="registerContent" id="emailInp" type="email" placeholder="example.user@mail.com" required />
+            
+            <input name="register" class="g-recaptcha" data-sitekey="6LfB-nMUAAAAANdTIUlORRKmwjWLari9Qi2700AH" data-callback="onSubmit" id="registerBtn" type="submit" value="Register">
 
+            <div class="registerterms" id="terms">
+            <input type="checkbox" name="checkbox" value="check" id="agree" />
+
+             I have read and agree to the <a href="https://termsfeed.com/terms-conditions/e37c563f455848da378816faa2ae027d" target="_blank">Terms and Conditions and Privacy Policy</a> </div>
+          </form>
           <div class="error">
             {% if status %}
               <h3>{{ message }}</h3>
