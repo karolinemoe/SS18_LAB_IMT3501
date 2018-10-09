@@ -25,7 +25,7 @@ Divide the team into smaller groups (1-2), each of is responisible for one modul
 
 
 ### Installation
-1. It is important to have Docker installed before deploy the forum.
+1. Install Docker and Git before deploying the application.
 
 ```sh
 sudo apt update
@@ -39,28 +39,34 @@ sudo apt install docker
 sudo apt install docker-compose 
 ```
 
-2. Clone the documents from git and run the forum
-
-__It is important that you have git installed and have a user in GitHub so you can clone the documents__
-
 ```sh
 sudo apt install git       
 ```
+
+2. Clone our git repo
 
 ```sh
 sudo git clone https://github.com/karolinemoe/SS18_LAB_IMT3501.git         
 ```
 
+3. Navigate to the repo folder
+
 ```sh
 cd SS18_LAB_IMT3501/
 ```
 
-If you like, you can press __ctrl+shift+t__ to open a new tab in terminal so you can run this in background.
+4. Run docker compose
+> It takes some time to deploy it, so be patient. If you like, you can press __ctrl+shift+t__ to open a new tab in terminal so you can run this in background.
 
 ```sh
 sudo docker-compose up
 ```
-> It takes some time to deploy it, so be patient
 
-After you deploy it, you can open your favorite browser and type localhost. It will direct you to the forum, the url will be localhost/php/ 
+After you deploy it, you can open your favorite browser and type localhost. It will direct you to the forum, the url will be localhost/php/ <br/>
+Dummy data is provided and existing users/admin have the following credentials: <br/>
+Uname: user1 Passwd: user1 <br/>
+Uname: user2 Passwd: user2 <br/>
+Uname: user3 Passwd: user3 <br/>
+Uname: admin Passwd: admin <br/>
+
 
