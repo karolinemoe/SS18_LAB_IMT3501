@@ -15,6 +15,9 @@
   $user = new User($db);
 
   $data = [];
+
+  if(empty($_POST['agree']) || $_POST['agree'] != 'agree')
+
   if ($user->isLoggedIn()) {
     header('Location: index.php');
   }
