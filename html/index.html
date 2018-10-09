@@ -36,9 +36,15 @@
               <input type="submit" value="Log out" id="logoutButton">
             </form>
           </div></a>
-          <div class="btnGeneral" id="logInField">
-
-          </div>
+          {% if isAdmin == "true" %}
+          <a href="adminPage.php">
+            <div class="btnGeneral" id="logInField">
+              <h2>Admin page</h2>
+            </div>
+          </a>
+          {% else %}
+            <div class="btnGeneral" id="logInField"></div>
+          {% endif %}
         {% else %}
           <div class="btnGeneral" id="btnLogin">
 

@@ -84,7 +84,51 @@ class User {
     return $this->uid != -1;
   }
 
+  public function isAdmin() {
+    try {
+      $res = [];
+      $sql = "SELECT usertype FROM user WHERE userId = ?";
+      $sth = $this->db->prepare($sql);
+      $sth->execute(array($this->uid));
+      $res = $sth->fetchColumn();
+    }
+    catch(PDOException $e) {
+      // NOTE DON'T USE THIS IN PRODUCTION
+      // NOTE NEVER GIVE CRUCIAL INFORMATION TO USERS
+      echo 'Connection failed: ' . $e->getMessage();
+    }
+    if ($res == "admin") return true;
+    else return false;
+  }
+
   public function getUser() {
     return $uid;
+  }
+
+  public function getUsers() {
+    $res = [];
+    try {
+      $sql = 'SELECT userId, username, email, usertype
+							FROM user
+              WHERE usertype != "banned"
+							ORDER BY usertype ASC';
+			$sth = $this->db->prepare($sql);
+			$sth->execute(array());
+			$replies = [];
+			while($row = $sth->fetch(PDO::FETCH_ASSOC)) {
+				$res[] = $row;
+			}
+			return $res;
+    } catch(PDOException $e) {
+      // NOTE DON'T USE THIS IN PRODUCTION
+      // NOTE NEVER GIVE CRUCIAL INFORMATION TO USERS
+      echo 'Connection failed: ' . $e->getMessage();
+		}
+  }
+
+  public function deleteUser($id) {
+    $sql = 'UPDATE user SET usertype = "banned", username ="banned" WHERE userId=?';
+    $sth = $this->db->prepare($sql);
+    $sth->execute(array($id));
   }
 }

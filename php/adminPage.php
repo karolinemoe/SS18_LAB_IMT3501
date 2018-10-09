@@ -4,8 +4,6 @@
   require_once '../vendor/autoload.php';
   require_once '../classes/DB.php';
   require_once '../classes/User.php';
-  require_once '../classes/Category.php';
-  require_once '../classes/Topic.php';
 
   $loader = new Twig_Loader_Filesystem('../html');
   $twig = new Twig_Environment($loader, array(
@@ -15,8 +13,6 @@
   $data = [];
   $db = DB::getDBConnection();
   $user = new User($db);
-  $category = new Category($db);
-  $topic = new Topic($db);
 
   if ($user->isLoggedIn()) {
     $data['loggedIn'] = "true";
@@ -26,7 +22,6 @@
     $data['isAdmin'] = 'true';
   }
 
-  $data['categories'] = $category->getCategories();
-  $data['topics'] = $topic->getTopics();
+  $data['users'] = $user->getUsers();
 
-  echo $twig->render('index.html', $data);
+  echo $twig->render('adminPage.html', $data);
