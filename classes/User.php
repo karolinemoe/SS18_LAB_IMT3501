@@ -24,11 +24,18 @@ class User {
 
   public function newUser($data) {
     try {
-      $sql = 'INSERT INTO user(username, password, email, usertype) VALUES (?, ?, ?, ?)';
+      $sql = 'SELECT COUNT(userId) FROM user WHERE username = ?';
       $sth = $this->db->prepare($sql);
-      $usertype = "normal";
-      $password = password_hash($data['password'], PASSWORD_DEFAULT);
-      $sth->execute(array($data['username'], $password, $data['email'], $usertype));
+      $sth->execute(array($data['username']));
+      if ($sth->rowCount()==0) {
+        $sql = 'INSERT INTO user(username, password, email, usertype) VALUES (?, ?, ?, ?)';
+          $sth = $this->db->prepare($sql);
+          $usertype = "normal";
+          $password = password_hash($data['password'], PASSWORD_DEFAULT);
+          $sth->execute(array($data['username'], $password, $data['email'], $usertype));
+      } else { 
+          $res['taken'] = "This username is allready taken";
+      }
     }
     catch(PDOException $e) {
       // NOTE DON'T USE THIS IN PRODUCTION
