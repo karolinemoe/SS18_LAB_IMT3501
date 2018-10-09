@@ -63,7 +63,8 @@ sudo docker-compose up
 ```
 
 After you deploy it, you can open your favorite browser and type localhost. It will direct you to the forum, the url will be localhost/php/ <br/>
-Dummy data is provided and existing users/admin have the following credentials: <br/>
+
+# Dummy data is provided and existing users/admin have the following credentials: <br/>
 Uname: user1 Passwd: user1 <br/>
 Uname: user2 Passwd: user2 <br/>
 Uname: user3 Passwd: user3 <br/>
