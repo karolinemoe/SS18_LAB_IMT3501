@@ -25,6 +25,8 @@ Divide the team into smaller groups (1-2), each of is responisible for one modul
 
 
 ### Installation
+> Prerequisites: Regarding ports, any webserver and mysql server running locally needs to be shut off before running docker-compose up, to free up the needed ports (80, 443 and 3306). 
+
 1. Install Docker and Git before deploying the application.
 
 ```sh
