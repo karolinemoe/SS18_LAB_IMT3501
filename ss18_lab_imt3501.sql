@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 03. Okt, 2018 14:53 PM
--- Server-versjon: 10.1.26-MariaDB
--- PHP Version: 7.1.9
+-- Generation Time: Oct 09, 2018 at 04:42 PM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `category`
+-- Table structure for table `category`
 --
 
 CREATE TABLE `category` (
@@ -34,7 +34,7 @@ CREATE TABLE `category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dataark for tabell `category`
+-- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`categoryId`, `categoryName`) VALUES
@@ -45,7 +45,7 @@ INSERT INTO `category` (`categoryId`, `categoryName`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `failedlogins`
+-- Table structure for table `failedlogins`
 --
 
 CREATE TABLE `failedlogins` (
@@ -56,7 +56,7 @@ CREATE TABLE `failedlogins` (
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `oldpwhash`
+-- Table structure for table `oldpwhash`
 --
 
 CREATE TABLE `oldpwhash` (
@@ -68,7 +68,7 @@ CREATE TABLE `oldpwhash` (
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `replies`
+-- Table structure for table `replies`
 --
 
 CREATE TABLE `replies` (
@@ -81,7 +81,7 @@ CREATE TABLE `replies` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dataark for tabell `replies`
+-- Dumping data for table `replies`
 --
 
 INSERT INTO `replies` (`replyId`, `content`, `timestamp`, `userId`, `topicId`, `subReplyOf`) VALUES
@@ -92,7 +92,7 @@ INSERT INTO `replies` (`replyId`, `content`, `timestamp`, `userId`, `topicId`, `
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `topics`
+-- Table structure for table `topics`
 --
 
 CREATE TABLE `topics` (
@@ -105,7 +105,7 @@ CREATE TABLE `topics` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dataark for tabell `topics`
+-- Dumping data for table `topics`
 --
 
 INSERT INTO `topics` (`topicId`, `topicName`, `description`, `timestamp`, `categoryId`, `userId`) VALUES
@@ -116,7 +116,7 @@ INSERT INTO `topics` (`topicId`, `topicName`, `description`, `timestamp`, `categ
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -128,13 +128,14 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dataark for tabell `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`userId`, `username`, `password`, `email`, `usertype`) VALUES
 (1, 'user1', '$2y$10$kuR9OIhby1br/D18DGQZne7IE6hV/ajNTZ4Lxp7QeICbW1Ny4gS22', 'user1@mail.com', 'normal'),
 (2, 'user2', '$2y$10$4ub5mFib/sY85MICjxMgv.GXITpVsAapntD2I.9ybKDvO8C.UbQaa', 'user2@mail.com', 'normal'),
-(3, 'user3', '$2y$10$6rktN596UvPhVXDF3ICnPOTQ9/I/ctC1b6vB8kt2GWyggi43n7jG6', 'user3@mail.com', 'normal');
+(3, 'user3', '$2y$10$6rktN596UvPhVXDF3ICnPOTQ9/I/ctC1b6vB8kt2GWyggi43n7jG6', 'user3@mail.com', 'normal'),
+(5, 'admin', '$2y$10$xsABcPA4rSPLe0NgOIoPu./jIbwfQBxn.9iKbLoUggu0fQehqXD3S', 'admin@admin.com', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -189,44 +190,40 @@ ALTER TABLE `user`
 --
 ALTER TABLE `category`
   MODIFY `categoryId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `replies`
 --
 ALTER TABLE `replies`
   MODIFY `replyId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `topics`
 --
 ALTER TABLE `topics`
   MODIFY `topicId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- Constraints for dumped tables
+--
 
 --
--- Begrensninger for dumpede tabeller
---
-
---
--- Begrensninger for tabell `failedlogins`
+-- Constraints for table `failedlogins`
 --
 ALTER TABLE `failedlogins`
   ADD CONSTRAINT `failedlogins_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`);
 
 --
--- Begrensninger for tabell `replies`
+-- Constraints for table `replies`
 --
 ALTER TABLE `replies`
   ADD CONSTRAINT `replies_ibfk_1` FOREIGN KEY (`topicId`) REFERENCES `topics` (`topicId`),
   ADD CONSTRAINT `replies_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`);
 
 --
--- Begrensninger for tabell `topics`
+-- Constraints for table `topics`
 --
 ALTER TABLE `topics`
   ADD CONSTRAINT `topics_ibfk_1` FOREIGN KEY (`categoryId`) REFERENCES `category` (`categoryId`),
