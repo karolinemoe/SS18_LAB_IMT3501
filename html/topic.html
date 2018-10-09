@@ -12,7 +12,7 @@
     <div class="container">
       <div id="header">
         <img src="../logo/logo_png.png" height="90" id="logo">
-        <h1 id="forumName">{{ topic.topicName }}</h1>
+        <h1 id="forumName">DownToEarth Forum - {{ topic.topicName }}</h1>
       </div>
       <div class="article">
         <a href="index.php">
@@ -21,17 +21,17 @@
           </div>
         </a>
         {% if loggedIn == "true" %}
-        <a href="profile.php">
+        <!--<a href="profile.php">-->
           <div class="btnGeneral">
-            
+
           </div>
-        </a>
-        <div class="btnGeneral">
+        <!--</a>-->
+        <a><div class="btnGeneral">
           <form class="logOutForm" method="POST" action="topic.php?id={{id}}">
             <input type="hidden" name="logOutForm" value="1">
             <input type="submit" value="Log out" id="logoutButton">
           </form>
-        </div>
+        </div></a>
         <div class="btnGeneral" id="logInField">
 
         </div>
@@ -52,26 +52,37 @@
             </form>
           </div>
         {% endif %}
-        <div class="content">
+        <div class="content" id="topicLayout">
           <div id="topicDesc">
-            <p>{{ topic.description }} <p>
-            <p>Posted by {{ topic.username }}</p>
-            <p>{{ topic.timestamp }}</p>
+            <div id="topicInfo">
+              <p id="topicAuthor">Posted by: {{ topic.username }}</p>
+              <p id="topicDate">{{ topic.timestamp }}</p>
+            </div>
+            <p id="topicContent">{{ topic.description }} <p>
           </div>
-          <br><br>
+          {% if loggedIn == true %}
+          {% endif %}
           {% for reply in replies %}
-            <p><b>{{ reply.username }}</b></p>
-            <p>{{ reply.content }}</p>
-            <p>{{ reply.timestamp }}</p>
-            <br><br>
+          <div id="replyDiv">
+            <div id="replyInfo">
+              <p id="replyAuthor">{{ reply.username }}</p>
+              <p id="replyDate">{{ reply.timestamp }}</p>
+            </div>
+            <p id="replyContent">{{ reply.content }}</p>
+          </div>
           {% endfor %}
+          <form class="inputForm" id="newComment" method="POST" action="newReply.php">
+            <input type="hidden" name="topicId" value="{{ topic.topicId }}">
+            <textarea id="replyInput" name="content" placeholder="Write a new reply" required></textarea>
+            <input id="newReplyButton" type="submit" value="Post" />
+          </form>
         </div>
       </div>
       <div class="navLeft">
-       
+
       </div>
       <div class="navRight">
-        
+
       </div>
     </div>
   </body>

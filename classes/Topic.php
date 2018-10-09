@@ -11,13 +11,16 @@ Class Topic {
 
 	public function newTopic($data) {
 		try {
-			$res = [];
-			$sql = "INSERT INTO `topics`(`topicName`, `description`, `timestamp`, `categoryId`, `userId`) VALUES (?,?,?,?,?);
-			SELECT topicId FROM `topics` ORDER BY timestamp DESC LIMIT 1";
+			$sql = "INSERT INTO `topics`(`topicName`, `description`, `timestamp`, `categoryId`, `userId`) VALUES (?,?,?,?,?)";
+
 			$sth = $this->db->prepare($sql);
-			$sth->execute(array($data['topicName'], $data['content'], $data['timestamp'], $data['category'], "1"));
-			$res['id'] = $sth->fetch(PDO::FETCH_ASSOC);
-			$res['status'] = "OK";
+			$sth->execute(array($data['topicName'], $data['content'], $data['timestamp'], $data['categoryId'], $data['user']));
+
+			$sql = "SELECT `topicId` FROM `topics` ORDER BY `timestamp` DESC LIMIT 1";
+			$sth = $this->db->prepare($sql);
+			$sth->execute();
+			$res = $sth->fetchColumn();
+			//$res['status'] = "OK";
 			return $res;
 
 		} catch(PDOException $e) {
@@ -44,7 +47,7 @@ Class Topic {
 
 	public function getTopicById($id) {
 		try {
-			$sql = 'SELECT t.topicName, t.description, t.timestamp, u.username
+			$sql = 'SELECT t.topicId, t.topicName, t.description, t.timestamp, u.username
 							FROM topics t
 							INNER JOIN user u ON t.userId = u.userId
 							WHERE t.topicId = ?';
