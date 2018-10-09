@@ -21,11 +21,11 @@
           </div>
         </a>
         {% if loggedIn == "true" %}
-        <a href="profile.php">
+        <!--<a href="profile.php">-->
           <div class="btnGeneral">
 
           </div>
-        </a>
+        <!--</a>-->
         <div class="btnGeneral">
           <form class="logOutForm" method="POST" action="topic.php?id={{id}}">
             <input type="hidden" name="logOutForm" value="1">
@@ -61,11 +61,6 @@
             <p id="topicContent">{{ topic.description }} <p>
           </div>
           {% if loggedIn == true %}
-            <form class="inputForm" id="newComment" method="POST" action="newReply.php">
-              <input type="hidden" name="topicId" value="{{ topic.topicId }}">
-              <input type="text" name="content" placeholder="Write a new reply" required>
-              <input type="submit" value="Post" />
-            </form>
           {% endif %}
           {% for reply in replies %}
           <div id="replyDiv">
@@ -76,6 +71,11 @@
             <p id="replyContent">{{ reply.content }}</p>
           </div>
           {% endfor %}
+          <form class="inputForm" id="newComment" method="POST" action="newReply.php">
+            <input type="hidden" name="topicId" value="{{ topic.topicId }}">
+            <textarea id="replyInput" name="content" placeholder="Write a new reply" required></textarea>
+            <input id="newReplyButton" type="submit" value="Post" />
+          </form>
         </div>
       </div>
       <div class="navLeft">
