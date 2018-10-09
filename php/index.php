@@ -3,6 +3,7 @@
 
   require_once '../vendor/autoload.php';
   require_once '../classes/DB.php';
+  require_once '../classes/LogDB.php';
   require_once '../classes/User.php';
   require_once '../classes/Category.php';
   require_once '../classes/Topic.php';
@@ -13,8 +14,9 @@
     // Can add cache after finished development for faster loading times
   ));
   $data = [];
+  $logdb = LogDB::getDBConnection();
   $db = DB::getDBConnection();
-  $user = new User($db);
+  $user = new User($db, $logdb);
   $category = new Category($db);
   $topic = new Topic($db);
 

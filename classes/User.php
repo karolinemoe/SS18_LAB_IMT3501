@@ -1,13 +1,16 @@
 <?php
 
 require_once "DB.php";
+require_once "LogDB.php";
 
 class User {
   private $uid = -1;
   private $db = null;
+  private $logdb = null;
 
-  public function __construct($db) {
+  public function __construct($db, $logdb) {
     $this->db = $db;
+    $this->logdb = $logdb;
     if (isset($_POST['logOutForm'])) {
       unset($_SESSION['uid']);
       // Avoid Session Fixation by changing session id on logout
@@ -63,6 +66,20 @@ class User {
           $_SESSION['uid'] = $this->uid;
         }
         else {
+          // If error insert into logdb
+          try {
+            $sql = 'SELECT userId FROM user WHERE username =?';
+            $sth = $this->db->prepare($sql);
+            $sth->execute(array($data['username']));
+            $res = [];
+            $res = $sth->fetch(PDO::FETCH_ASSOC);
+
+            $sql = 'INSERT INTO failedlogins(`userId`) VALUES (?)';
+            $sth = $this->logdb->prepare($sql);
+            $sth->execute(array($res['userId']));
+          } catch(PDOExeption $e) {
+              // .. do error on error? 
+          }
           $res['status'] = 'ERROR';
           $res['message'] = 'Wrong username/password';
         }

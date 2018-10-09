@@ -7,6 +7,7 @@
   require_once '../classes/Category.php';
   require_once '../classes/Topic.php';
   require_once '../classes/Reply.php';
+  require_once '../classes/LogDB.php';
 
   $loader = new Twig_Loader_Filesystem('../html');
   $twig = new Twig_Environment($loader, array(
@@ -16,7 +17,8 @@
   $data = [];
   $data['id'] = htmlspecialchars($_GET["id"]);
   $db = DB::getDBConnection();
-  $user = new User($db);
+  $logdb = LogDB::getDBConnection();
+  $user = new User($db, $logdb);
   $category = new Category($db);
   $topic = new Topic($db);
   $reply = new Reply($db);

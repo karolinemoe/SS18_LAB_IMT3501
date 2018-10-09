@@ -5,6 +5,7 @@
   require_once '../classes/DB.php';
   require_once '../classes/User.php';
   require_once '../classes/Reply.php';
+  require_once '../classes/LogDB.php';
 
   $loader = new Twig_Loader_Filesystem('../html');
   $twig = new Twig_Environment($loader, array(
@@ -13,7 +14,8 @@
   ));
 
   $db = DB::getDBConnection();
-  $user = new User($db);
+  $logdb = LogDB::getDBConnection();
+  $user = new User($db, $logdb);
   $reply = new Reply($db);
 
   $data = [];
