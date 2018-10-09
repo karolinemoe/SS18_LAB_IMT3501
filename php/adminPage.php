@@ -23,6 +23,7 @@
   if ($user->isAdmin()) {
     $data['isAdmin'] = 'true';
   }
+  else header('Location: index.php');
 
   $data['users'] = $user->getUsers();
 

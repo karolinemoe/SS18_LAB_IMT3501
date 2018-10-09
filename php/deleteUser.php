@@ -2,12 +2,14 @@
 session_start();
 
 require_once '../classes/DB.php';
+require_once '../classes/LogDB.php';
 require_once '../classes/User.php';
 
 $db = DB::getDBConnection();
-$user = new User($db);
+$logdb = LogDB::getDBConnection();
+$user = new User($db, $logdb);
 $data = [];
-$user->deleteUser($_POST['delete']);
+if ($user->isAdmin())$user->deleteUser($_POST['delete']);
 
 $headerloc = 'Location: adminPage.php';
 header($headerloc);
