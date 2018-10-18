@@ -1,10 +1,5 @@
 # SS18_LAB_IMT3501
 
-curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" > ./docker-compose <br>
-sudo mv ./docker-compose /usr/bin/docker-compose <br>
-sudo chmod +x /usr/bin/docker-compose <br>
-
-
 ## Members  
 Karoline Moe Arnesen (473190) - PROG  
 Kjetil Wilhelmsen Helgås (473187) - PROG  
@@ -57,8 +52,11 @@ sudo apt-get install \
    sudo apt-get install docker-ce
 ```
 
+Install Docker-compose version 1.22
 ```sh
-sudo apt install docker-compose 
+curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" > ./docker-compose <br>
+sudo mv ./docker-compose /usr/bin/docker-compose <br>
+sudo chmod +x /usr/bin/docker-compose <br>
 ```
 
 ```sh
