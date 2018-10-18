@@ -16,6 +16,8 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: ss18_lab_imt3501
+      MYSQL_DATABASE: 
+        - ss18_lab_imt3501
+        - logDB
     volumes:
         - ./schema:/docker-entrypoint-initdb.d
