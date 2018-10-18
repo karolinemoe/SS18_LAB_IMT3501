@@ -54,9 +54,9 @@ sudo apt-get install \
 
 Install Docker-compose version 1.22
 ```sh
-curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" > ./docker-compose <br>
-sudo mv ./docker-compose /usr/bin/docker-compose <br>
-sudo chmod +x /usr/bin/docker-compose <br>
+curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" > ./docker-compose
+sudo mv ./docker-compose /usr/bin/docker-compose
+sudo chmod +x /usr/bin/docker-compose
 ```
 
 ```sh
